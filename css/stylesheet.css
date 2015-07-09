@@ -1,0 +1,97 @@
+body {
+	background: #232128;
+	margin: 0px;
+	font-family: 'Open Sans',Helvetica,Arial,sans-serif;
+}
+
+li {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+.header {
+	position: absolute;
+	height: 50px;
+	width: 100%;
+	top: 0;
+	background: #272A2D;
+	z-index: 1000;
+	color: #fff;
+}
+
+.header li {
+	float: right;
+	margin-right: 50px;
+}
+
+.header ul {
+	margin: 0px 15px 0px 15px;
+	padding: 15px 0px 10px 10px;
+}
+
+.header a {
+	color: white;
+}
+
+.header .logo {
+	float: left;
+}
+.content {
+	padding-top: 40px;
+}
+
+.footer {
+	position: absolute;
+	height: 40px;
+	width: 100%;
+	background: #272A2D;
+	bottom: 0;
+	padding: 5px 0px 5px 0px;
+	color: #fff;
+}
+
+.footer li {
+	float: left;
+	margin-right: 55px;
+	font-size: 15px;
+}
+
+.footer ul {
+	padding: 10px 0px 10px 10px;
+	margin: 0;
+}
+
+.buttonContainer {
+	height: 100px;
+	width: 200px;
+	/* background: white; */
+	/* float: right; */
+	margin: auto;
+}
+
+button#trade {
+	position:relative;
+	outline: 0;
+	cursor: pointer;
+	display: table;
+	height: 40px;
+	width: 80px;
+  border-radius: 3px;
+  text-decoration: none;
+  border: none;
+  background-color: #3A414C;
+  color: white;
+	margin: 0 auto;
+	top: 50%;
+}
+
+button#trade:hover {
+	background-color: #586271;
+}
+
+button#trade:active {
+	background-color: #3A414C;
+}
