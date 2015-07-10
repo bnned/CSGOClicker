@@ -3,6 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="./css/stylesheet.css" media="screen" title="no title" charset="utf-8">
+		<script src="./js/script.js" charset="utf-8"></script>
 		<title>CSGO CLICKER</title>
 	</head>
 	<body>
@@ -14,15 +15,16 @@
 				</ul>
 			</div>
 			<div class="content">
+				<div id="moneyTotal">$0.00</div>
 				<div class="buttonContainer">
-					<button type="button" id="trade">Trade!</button>
+					<button type="button" id="trade" onClick="trade();moneyUpdate();buy();">Trade!</button>
 				</div>
 			</div>
 			<div class="footer">
 				<ul>
 					<li>Copyright © csgoclicker.com 2015</li>
-					<li>About Us</li>
-					<li>Contact</li>
+					<li><a href="#">About Us</a></li>
+					<li><a href="#">Contact</a></li>
 				</ul>
 			</div>
 	</body>

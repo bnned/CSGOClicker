@@ -1,3 +1,25 @@
+/* reset CSS */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
 body {
 	background: #232128;
 	margin: 0px;
@@ -40,7 +62,7 @@ a {
 	float: left;
 }
 .content {
-	padding-top: 40px;
+	padding-top: 50px;
 }
 
 .footer {
@@ -61,7 +83,10 @@ a {
 
 .footer ul {
 	padding: 10px 0px 10px 10px;
-	margin: 0;
+}
+
+.footer a {
+	color: #fff;
 }
 
 .buttonContainer {
@@ -94,4 +119,10 @@ button#trade:hover {
 
 button#trade:active {
 	background-color: #3A414C;
+}
+
+#moneyTotal {
+	text-align: center;
+	color: #fff;
+	font-size: 15px;
 }
