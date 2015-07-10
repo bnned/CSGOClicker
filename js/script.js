@@ -2,12 +2,10 @@ var money = 0;
 var tradeMultiplier = 1;
 
 
-
-
 function trade() {
     money = money + (1 * tradeMultiplier);
 
-  return money;
+    return money;
 }
 
 function moneyUpdate() {
@@ -15,8 +13,8 @@ function moneyUpdate() {
 }
 
 function buy() {
-if (money >= 50) {
-  tradeMultiplier = 2;
-  return tradeMultiplier;
-}
+    if (money >= 50) {
+        tradeMultiplier = 2;
+        return tradeMultiplier;
+    }
 }
