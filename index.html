@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="./css/stylesheet.css" media="screen" title="no title" charset="utf-8">
-		<script src="./js/script.js" charset="utf-8"></script>
+		<script src="./js/jquery-2.1.4.min.js" charset="utf-8"></script>
 		<title>CSGO CLICKER</title>
 	</head>
 	<body>
@@ -15,9 +15,11 @@
 				</ul>
 			</div>
 			<div class="content">
+				<button type="button" id="buyMarketBot">Buy a Market Bot</button>
 				<div id="moneyTotal">$0.00</div>
+				<div id="moneyPs">$0.00</div>
 				<div class="buttonContainer">
-					<button type="button" id="trade" onClick="trade();moneyUpdate();buy();">Trade!</button>
+					<button type="button" id="trade">Trade!</button>
 				</div>
 			</div>
 			<div class="footer">
@@ -27,5 +29,6 @@
 					<li><a href="#">Contact</a></li>
 				</ul>
 			</div>
+			<script src="./js/script.js" charset="utf-8"></script>
 	</body>
 </html>

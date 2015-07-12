@@ -126,3 +126,33 @@ button#trade:active {
 	color: #fff;
 	font-size: 15px;
 }
+
+#moneyPs {
+	text-align: center;
+	color: #fff;
+	font-size: 15px;
+}
+
+#buyMarketBot {
+	position:relative;
+	outline: 0;
+	cursor: pointer;
+	display: block;
+	height: 40px;
+	width: 80px;
+  border-radius: 3px;
+  text-decoration: none;
+  border: none;
+  background-color: #3A414C;
+  color: white;
+	margin: 10px auto 10px auto;
+	top: 50%;
+}
+
+button#buyMarketBot:hover {
+	background-color: #586271;
+}
+
+button#buyMarketBot:active {
+	background-color: #3A414C;
+}
