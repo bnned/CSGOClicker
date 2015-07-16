@@ -34,14 +34,24 @@ a {
 	text-decoration: none;
 }
 
+* {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 .header {
-	position: absolute;
-	height: 50px;
-	width: 100%;
-	top: 0;
-	background: #272A2D;
-	z-index: 1000;
-	color: #fff;
+  position: absolute;
+  height: 50px;
+  width: 100%;
+  top: 0;
+  background: #272A2D;
+  z-index: 1000;
+  color: #fff;
+  border-bottom: 2px #1D1D1D solid;
 }
 
 .header li {
@@ -61,8 +71,34 @@ a {
 .header .logo {
 	float: left;
 }
-.content {
-	padding-top: 50px;
+
+#game {
+  position: absolute;
+  left: 0px;
+  top: 50px;
+  right: 0px;
+  bottom: 0px;
+  overflow: hidden;
+}
+
+.leftSide {
+	position: absolute;
+	height: 100%;
+	width: 75%;
+	background: #3F4245;
+	top: 0;
+	bottom: 0;
+	left: 0;
+}
+
+.rightSide {
+  position: absolute;
+  background: #1F2124;
+  height: 100%;
+  width: 25%;
+	top: 0;
+	bottom: 0;
+	right: 0;
 }
 
 .footer {
@@ -89,70 +125,88 @@ a {
 	color: #fff;
 }
 
+/*
 .buttonContainer {
 	height: 100px;
 	width: 200px;
-	/* background: white; */
-	/* float: right; */
+	 background: white;
+	 float: right;
 	margin: auto;
 }
+*/
 
-button#trade {
-	position:relative;
-	outline: 0;
-	cursor: pointer;
-	display: table;
-	height: 40px;
-	width: 80px;
-  border-radius: 3px;
-  text-decoration: none;
-  border: none;
-  background-color: #3A414C;
-  color: white;
-	margin: 0 auto;
-	top: 50%;
+.moneyData {
+	height: 175px;
+	background: #282A2C;
 }
 
-button#trade:hover {
+.itemList {
+  padding-top: 10px;
+	margin:
+  height: 100%;
+  width: 100%;
+}
+
+.item {
+	cursor: pointer;
+  background: #3C3C3C;
+  width: auto;
+  margin: 0px 10px 10px 10px;
+	color: #898989;
+}
+
+.item:hover {
+	background: #515151;
+	color: #D3D3D3;
+}
+
+.item:active {
+	color: #FFFFFF;
+	background: #626262;
+}
+
+.itemDesc {
+	font-size: 12px;
+}
+
+.item div {
+  padding: 5px 0px 5px 10px;
+}
+
+.button {
+  cursor: pointer;
+  display: block;
+  width: 150px;
+  border-radius: 3px;
+  background-color: #3A414C;
+  color: white;
+  margin: 15px auto;
+  text-align: center;
+  padding: 10px 0px;
+}
+
+.button:hover {
 	background-color: #586271;
 }
 
-button#trade:active {
+.button:active {
 	background-color: #3A414C;
+}
+
+.button:disabled {
+	background-color: red;
 }
 
 #moneyTotal {
-	text-align: center;
-	color: #fff;
-	font-size: 15px;
+  padding: 15px 0px;
+  text-align: center;
+  color: #2DFF00;
+  font-size: 35px;
+  text-shadow: 1px 1px #288326;
 }
 
 #moneyPs {
-	text-align: center;
-	color: #fff;
-	font-size: 15px;
-}
-
-#buyMarketBot {
-	position:relative;
-	outline: 0;
-	cursor: pointer;
-	display: block;
-	height: 40px;
-	width: 80px;
-  border-radius: 3px;
-  text-decoration: none;
-  border: none;
-  background-color: #3A414C;
-  color: white;
-	margin: 10px auto 10px auto;
-	top: 50%;
-}
-
-button#buyMarketBot:hover {
-	background-color: #586271;
-}
-
-button#buyMarketBot:active {
-	background-color: #3A414C;
+  text-align: center;
+  color: #4F4F4F;
+  font-size: 15px;
 }
