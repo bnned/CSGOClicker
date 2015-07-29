@@ -1,67 +1,74 @@
+/*==========================================================================
+Useful Functions
+========================================================================= */
+
+function get(dis) {
+  return document.getElementById(dis);
+}
+
+function roundUp(num) {
+  return Math.ceil(num * 100) / 100;
+}
+
+function round(amount) {
+  return Math.round(amount);
+}
+
+/*==========================================================================
+Game
+========================================================================= */
+
+
 var moneyPs = 0;
 var moneyPsMultiplier = 1;
 var money = 0;
 var manualMultiplier = 0;
 var fps = 30;
-var manualTradeVis = false;
 
-var items = {marketBot: 1000, autoBump: 5};
+var itemPrice = {marketBot: 100, autoBump: 5};
 
-document.getElementById("trade").onclick = function() {
+var itemCount = {marketBot: 0, autoBump: 0};
+
+get("trade").onclick = function() {
   manualTrade();
-  manualTradeVisCheck();
 }
 
-document.getElementById("buyMarketBot").onclick = function() {
-  if (money >= items.marketBot) {
-    money -= items.marketBot;
-    items.marketBot *= 1.1;
-    items.marketBot = roundMoney(items.marketBot);
+get("buyMarketBot").onclick = function() {
+  if (money >= itemPrice.marketBot) {
+    money -= itemPrice.marketBot;
+    itemPrice.marketBot = roundUp(itemPrice.marketBot * 1.1);
     moneyPs += 1;
+    itemCount.marketBot += 1;
     updateMoney();
   }
 }
 
-document.getElementById("buyAutoBump").onclick = function() {
-  if (money >= items.autoBump) {
-    money -= items.autoBump;
-    items.autoBump *= 1.1;
-    items.autoBump = roundMoney(items.autoBump);
-    moneyPs += 0.1;
+get("buyAutoBump").onclick = function() {
+  if (money >= itemPrice.autoBump) {
+    money -= itemPrice.autoBump;
+    itemPrice.autoBump = roundUp(itemPrice.autoBump * 1.1);
+    moneyPs += .01;
+    itemCount.autoBump += 1;
     updateMoney();
   }
 }
 
 
-function roundMoney(num) {
-  return Math.ceil(num * 100) / 100;
-}
+
+
 
 function itemCheck() {
-/*
-  var marketBot = {
-    name: "Market Bot",
-    price: 1000,
-    description: "Very basic marketbot that you found online for cheap."
-  };
 
-  var autoBump = {
-    name:"Trade Auto Bumper",
-    price: 5,
-    description:"Now you can sleep while your trades bump."
-  };
-  */
-
-  if (money >= items.marketBot) {
-    document.getElementById("buyMarketBot").style.display = 'block';
-  } else if (money < items.marketBot) {
-    document.getElementById("buyMarketBot").style.display = 'none';
+  if ((itemCount.marketBot > 0) || (money >= itemPrice.marketBot)) {
+    get("buyMarketBot").style.display = 'block';
+  } else {
+    get("buyMarketBot").style.display = 'none';
   }
 
-  if (money >= items.autoBump) {
-    document.getElementById("buyAutoBump").style.display = 'block';
-  } else if (money < items.autoBump) {
-    document.getElementById("buyAutoBump").style.display = 'none';
+  if ((itemCount.autoBump > 0) || (money >= itemPrice.autoBump)) {
+    get("buyAutoBump").style.display = 'block';
+  } else {
+    get("buyAutoBump").style.display = 'none';
   }
 
 
@@ -70,49 +77,54 @@ function itemCheck() {
 
 /*==========================================================================
 Manual Trade
-================================================================= */
+========================================================================= */
 
 function manualTrade() {
-  manualTradeVis = false;
-  money += 1 + (1 * manualMultiplier);
-  updateMoney();
+  money += 0.1 + (1 * manualMultiplier);
 }
-
-function manualTradeVisCheck() {
-  if (manualTradeVis === true) {
-    document.getElementById("trade").style.display = 'block';
-  } else if (manualTradeVis === false) {
-    document.getElementById("trade").style.display = 'none';
-  }
-}
-
-function foundTrade() {
-  var prob = Math.random();
-  if (prob >= 0.5) {
-    manualTradeVis = true;
-  }
-}
-
 
 /*==========================================================================
 
-================================================================= */
+========================================================================= */
 
 function updatePrices() {
-  document.getElementById("price01").innerHTML = "Cost: $" + items.autoBump.toFixed(2);
-  document.getElementById("price02").innerHTML = "Cost: $" + items.marketBot.toFixed(2);
+  get("price01").innerHTML = "Cost: $" + itemPrice.autoBump;
+  get("price02").innerHTML = "Cost: $" + itemPrice.marketBot;
+}
+
+function updateItemAmount() {
+  get("autoBumpCount").innerHTML = itemCount.autoBump;
+  get("marketBotCount").innerHTML = itemCount.marketBot;
+}
+
+function updateCount() {
+
+}
+
+
+/*==========================================================================
+Canvas
+========================================================================= */
+
+function drawCanvasMain() {
+  var canvasMain = get("canvasMain");
+  var ctx = canvasMain.getContext("2d");
+  canvasMain.width = 500;
+  canvasMain.height = 500;
+  ctx.fillRect(50, 50, 100, 100);
 }
 
 
 
 /*==========================================================================
 
-================================================================= */
+========================================================================= */
 
 function updateMoney() {
-  document.getElementById("moneyTotal").innerHTML = "$" + money.toFixed(2);
-  document.getElementById("moneyPs").innerHTML = "$" + moneyPs.toFixed(2) + " /s";
+  get("moneyTotal").innerHTML = "$" + money;
+  get("moneyPs").innerHTML = "$" + moneyPs + " /s";
 }
+
 
 
 function moneyGain() {
@@ -122,12 +134,11 @@ function moneyGain() {
 setInterval(function() {
   itemCheck();
   updatePrices();
-  moneyGain();
+  updateItemAmount();
   updateMoney();
+  moneyGain();
 }, 1000 / fps);
 
 
-setInterval( function() {
-  foundTrade();
-  manualTradeVisCheck();
-}, 500);
+
+drawCanvasMain();

@@ -23,7 +23,7 @@ time, mark, audio, video {
 body {
 	background: #232128;
 	margin: 0px;
-	font-family: 'Open Sans',Helvetica,Arial,sans-serif;
+	font-family: Arial,Helvetica,Arial,sans-serif;
 }
 
 li {
@@ -61,7 +61,7 @@ a {
 
 .header ul {
 	margin: 0px 15px 0px 15px;
-	padding: 15px 0px 10px 10px;
+	padding: 17px 0px 10px 10px;
 }
 
 .header a {
@@ -91,6 +91,15 @@ a {
 	left: 0;
 }
 
+.bananaSticker {
+
+}
+
+.bananaSticker img {
+    display: block;
+    margin: 250px auto;
+}
+
 .rightSide {
   position: absolute;
   background: #1F2124;
@@ -118,7 +127,7 @@ a {
 }
 
 .footer ul {
-	padding: 10px 0px 10px 10px;
+	padding: 12px 0px 10px 10px;
 }
 
 .footer a {
@@ -153,6 +162,7 @@ a {
   width: auto;
   margin: 0px 10px 10px 10px;
 	color: #898989;
+	padding: 5px 0px 5px 10px;
 }
 
 .item:hover {
@@ -170,7 +180,14 @@ a {
 }
 
 .item div {
-  padding: 5px 0px 5px 10px;
+  padding-bottom: 5px;
+}
+
+.itemCount {
+  color: #fff;
+  padding: 0px 10px;
+  float: right;
+	color: #898989;
 }
 
 .button {
