@@ -147,6 +147,14 @@ a {
 .moneyData {
 	height: 175px;
 	background: #282A2C;
+	border-bottom: 1px #1D1D1D solid;
+}
+
+.moneyInfo {
+    float: left;
+    width: 298px;
+    height: 100%;
+    background: #1F1F1F;
 }
 
 .itemList {
@@ -163,6 +171,7 @@ a {
   margin: 0px 10px 10px 10px;
 	color: #898989;
 	padding: 5px 0px 5px 10px;
+	border-radius: 5px;
 }
 
 .item:hover {
@@ -195,35 +204,104 @@ a {
   display: block;
   width: 150px;
   border-radius: 3px;
-  background-color: #3A414C;
+  background-color: #84BB3C;
   color: white;
   margin: 15px auto;
   text-align: center;
   padding: 10px 0px;
+	border-top: 1px #9CEC33 solid;
+	border-right: 1px #9CEC33 solid;
+}
+
+.tradeButton {
+    cursor: pointer;
+    display: inline-block;
+    width: 150px;
+    border-radius: 3px;
+    background-color: #84BB3C;
+    color: white;
+    margin: 15px 15px 0px 15px;
+    float: right;
+    text-align: center;
+    padding: 10px 0px;
+    border-top: 1px #9CEC33 solid;
+    border-right: 1px #9CEC33 solid;
+    right: 0;
+}
+
+.tradeButton:hover {
+	background-color: #81CA22;
+}
+
+.tradeButton:active {
+	background-color: #669030;
+}
+
+.tradeButton:disabled {
+	background-color: red;
 }
 
 .button:hover {
-	background-color: #586271;
+	background-color: #81CA22;
 }
 
 .button:active {
-	background-color: #3A414C;
+	background-color: #669030;
 }
 
 .button:disabled {
 	background-color: red;
 }
 
+
 #moneyTotal {
-  padding: 15px 0px;
-  text-align: center;
-  color: #2DFF00;
-  font-size: 35px;
-  text-shadow: 1px 1px #288326;
+    padding: 15px 0px 0px 15px;
+    color: #2DFF00;
+    font-size: 35px;
+    text-shadow: 1px 1px #288326;
+    width: 250px;
+    float: left;
+		text-align: center;
 }
 
 #moneyPs {
-  text-align: center;
-  color: #4F4F4F;
-  font-size: 15px;
+    color: #4F4F4F;
+    font-size: 15px;
+    padding: 5px 0px 0px 15px;
+    width: 250px;
+    float: left;
+		text-align: center;
+}
+
+.jackpotButton {
+    cursor: pointer;
+    display: inline-block;
+    width: 150px;
+    border-radius: 3px;
+    background-color: #ECC30C;
+    color: white;
+    margin: 15px 15px 0px 15px;
+    float: right;
+    text-align: center;
+    padding: 10px 0px;
+    border-top: 1px #FFEB49 solid;
+    border-right: 1px #FFF600 solid;
+    right: 0;
+}
+
+.jackpotButton:hover {
+	background: #FFD725;
+}
+
+.jackpotButton:active {
+	background: #E8A80F;
+}
+
+
+.priceAfford {
+	color: #2DFF00;
+}
+
+.priceCantAfford {
+	color: #9C1313;
 }
