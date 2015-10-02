@@ -19,7 +19,7 @@ function moneyNormalizer() {
 }
 
 /*==========================================================================
-Game
+Variables
 ========================================================================= */
 
 
@@ -47,9 +47,47 @@ var itemPrice = {marketBot: 50, autoBump: 5, VIP: 15};
 
 var itemCount = {marketBot: 0, autoBump: 0, VIP: 0};
 
+/*==========================================================================
+Manual Trade
+========================================================================= */
+
 getTrade.onclick = function() {
   manualTrade();
 }
+
+function manualTrade() {
+  money += 0.1 + (1 * manualMultiplier);
+}
+
+
+/*==========================================================================
+Upgrades
+========================================================================= */
+var upgradeCount = {upgrade01: 0};
+var upgradePrice = {upgrade01: 25};
+
+get("upgrade01").onclick = function() {
+  if(moneyNormalizer() >= 5) {
+    moneyPsMultiplier += 0.5;
+    money -= 5;
+    upgradeCount.upgrade01 += 1;
+    upgradePrice.upgrade01 *= 1.1;
+    updateMoney();
+  }
+}
+
+
+
+/*==========================================================================
+Items
+========================================================================= */
+
+
+var items = [
+  {name: "Market Bot", desc: "Time to invest in something a little more worth-while. It takes a while to get money, but its worth it in the long run.", price: 50, moneyPs: 1.5},
+  {name: "Auto Bump", desc: "Auto bump your trades so you dont have to wake up every 30 minutes.", price: 10, moneyPs: .02},
+  {name: "VIP Membership", desc: "Premium perks and tools to use at your disposal.", price: 25, moneyPs: .1}
+]
 
 getBuyMarketBot.onclick = function() {
   if (moneyNormalizer() >= itemPrice.marketBot) {
@@ -83,6 +121,18 @@ getBuyVIP.onclick = function() {
 
 
 
+function itemCheck1(beat) {
+  var moneyNormalized = moneyNormalizer();
+
+  if (moneyNormalized >= beat) {
+    get(beat).firstElementChild.className = "priceAfford"
+    console.log("nigga ye");
+  } else {
+    get(beat).firstElementChild.className = "priceCantAfford"
+    console.log("nigga nah")
+  }
+}
+
 function itemCheck() {
   var moneyNormalized = moneyNormalizer();
 
@@ -90,6 +140,12 @@ function itemCheck() {
     getBuyMarketBot.style.display = 'block';
   } else {
     getBuyMarketBot.style.display = 'none';
+  }
+
+  if (moneyNormalized >= upgradePrice.upgrade01) {
+    get("upgrade01").style.display = 'block';
+  } else {
+    get("upgrade01").style.display = 'none';
   }
 
   if ((itemCount.autoBump > 0) || (moneyNormalized >= itemPrice.autoBump)) {
@@ -127,14 +183,6 @@ function itemCheck() {
 
 
 /*==========================================================================
-Manual Trade
-========================================================================= */
-
-function manualTrade() {
-  money += 0.1 + (1 * manualMultiplier);
-}
-
-/*==========================================================================
 Jackpot!
 ========================================================================= */
 
@@ -156,9 +204,9 @@ function jackpotCheck() {
 
 function jackpot() {
   var pot = money;
-  var prob = Math.random();
+  var randNum = Math.random();
   if (jackpotEnable) {
-    if (prob >= 0.5) {
+    if (randNum >= 0.5) {
         money += pot;
     } else {
         money -= pot;
@@ -168,7 +216,7 @@ function jackpot() {
 
 
 /*==========================================================================
-
+Update
 ========================================================================= */
 
 function updatePrices() {
@@ -181,6 +229,11 @@ function updateItemAmount() {
   getAutoBumpCount.innerHTML = itemCount.autoBump;
   getMarketBotCount.innerHTML = itemCount.marketBot;
   getVIPCount.innerHTML =  itemCount.VIP;
+}
+
+function updateMoney() {
+  getMoneyTotal.innerHTML = "$" + money.toFixed(2);
+  getMoneyPs.innerHTML = "$" + (moneyPs * moneyPsMultiplier).toFixed(2) + " /s";
 }
 
 function updateCount() {
@@ -211,15 +264,12 @@ function drawCanvasMain() {
 
 
 /*==========================================================================
-
+Final Calling and loop functions
 ========================================================================= */
 
-function updateMoney() {
-  getMoneyTotal.innerHTML = "$" + money.toFixed(2);
-  getMoneyPs.innerHTML = "$" + moneyPs.toFixed(2) + " /s";
+function init() {
+
 }
-
-
 
 function moneyGain() {
   money += (moneyPs * moneyPsMultiplier) / (1000 / fps);
@@ -235,5 +285,5 @@ setInterval(function() {
 }, 1000 / fps);
 
 
-
+init();
 drawCanvasMain();

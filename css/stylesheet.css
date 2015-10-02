@@ -43,8 +43,13 @@ a {
     user-select: none;
 }
 
+.wrapper {
+	height: 100%;
+	width: 100%;
+}
+
 .header {
-  position: absolute;
+	position: absolute;
   height: 50px;
   width: 100%;
   top: 0;
@@ -73,22 +78,21 @@ a {
 }
 
 #game {
-  position: absolute;
-  left: 0px;
-  top: 50px;
-  right: 0px;
-  bottom: 0px;
-  overflow: hidden;
+    height: auto;
+    position: absolute;
+    bottom: 50px;
+    top: 50px;
+    left: 0;
+    right: 0;
+    overflow: hidden;
 }
 
 .leftSide {
-	position: absolute;
 	height: 100%;
 	width: 75%;
 	background: #3F4245;
-	top: 0;
-	bottom: 0;
 	left: 0;
+	float: left;
 }
 
 .bananaSticker {
@@ -96,18 +100,17 @@ a {
 }
 
 .bananaSticker img {
-    display: block;
-    margin: 250px auto;
+  display: block;
+  margin: 250px auto;
 }
 
 .rightSide {
-  position: absolute;
+	position: absolute;
   background: #1F2124;
   height: 100%;
-  width: 25%;
-	top: 0;
-	bottom: 0;
-	right: 0;
+  width: 480px;
+  right: 0;
+	float: right;
 }
 
 .footer {
@@ -145,9 +148,10 @@ a {
 */
 
 .moneyData {
-	height: 175px;
-	background: #282A2C;
-	border-bottom: 1px #1D1D1D solid;
+    position: relative;
+    height: 175px;
+    background: #282A2C;
+    border-bottom: 1px #1D1D1D solid;
 }
 
 .moneyInfo {
@@ -158,10 +162,12 @@ a {
 }
 
 .itemList {
-  padding-top: 10px;
-	margin:
-  height: 100%;
-  width: 100%;
+    position: relative;
+    bottom: 0;
+    padding-top: 10px;
+    height: auto;
+    width: 100%;
+    overflow-y: auto;
 }
 
 .item {
@@ -304,4 +310,49 @@ a {
 
 .priceCantAfford {
 	color: #9C1313;
+}
+
+.upgradeContainer {
+    height: 75px;
+    position: relative;
+    background: #1D1D1D;
+    width: 100%;
+    overflow-y: hidden;
+}
+
+.upgradeContainer:hover {
+	height: auto;
+	min-height: 75px;
+}
+
+.upgrade {
+    background-image: url("http://i.imgur.com/mTleRS0.png");
+    height: 69px;
+    width: 69px;
+    background: #FFC800;
+    float: left;
+    margin: 3px 0px 3px 3px;
+}
+
+.upgrade:hover {
+    background: #FFD53B;
+}
+
+.upgrade img {
+    position: relative;
+    top: 26%;
+    display: block;
+    height: 32px;
+    width: 32px;
+    margin: 0 auto;
+    opacity: 0.4;
+}
+
+.jumbotron {
+    position: relative;
+    top: 46%;
+    height: 80px;
+    width: 200px;
+    margin: auto;
+    background-image: url("http://i.imgur.com/ns19Kn0.png");
 }

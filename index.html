@@ -3,10 +3,10 @@
 	<head>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="./css/stylesheet.css" media="screen" title="no title" charset="utf-8">
-		<script src="./js/jquery-2.1.4.min.js" charset="utf-8"></script>
 		<title>CSGO CLICKER</title>
 	</head>
 	<body>
+		<div class="wrapper">
 			<div class="header">
 				<ul>
 					<li class="logo"><a href="#">CSGO Clicker</a></li>
@@ -16,8 +16,11 @@
 			</div>
 			<div id="game">
 				<div class="leftSide">
+					<div class="jumbotron">
+
+					</div>
 					<div class="bananaSticker">
-						<canvas id="canvasMain" width="300" height="300">bruh u need to upgrade forreal :/</canvas>
+						<!--<canvas id="canvasMain" width="300" height="300">bruh u need to upgrade forreal :/</canvas> -->
 					</div>
 				</div>
 				<div class="rightSide">
@@ -28,6 +31,11 @@
 						</div>
 						<div class="tradeButton" id="trade">Accept Trade!</div>
 						<div class="jackpotButton" id="jackpot">Enter Jackpot!</div>
+					</div>
+					<div class="upgradeContainer">
+						<div class="upgrade" id="upgrade01">
+							<img src="http://i.imgur.com/mTleRS0.png" alt="" />
+						</div>
 					</div>
 					<div class="itemList">
 						<div class="item" id="buyAutoBump">
@@ -58,6 +66,7 @@
 					<li><a href="#">Contact</a></li>
 				</ul>
 			</div>
-			<script src="./js/script.js" charset="utf-8"></script>
+		</div>
+		<script src="./js/script.js" charset="utf-8"></script>
 	</body>
 </html>
