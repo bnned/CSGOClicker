@@ -1,40 +1,398 @@
-/* reset CSS */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+table, caption, tbody, tfoot, thead, tr, th, td {
 	margin: 0;
 	padding: 0;
 	border: 0;
+	outline: 0;
+	font-weight: inherit;
+	font-style: inherit;
 	font-size: 100%;
-	font: inherit;
+	font-family: inherit;
 	vertical-align: baseline;
 }
-
-body {
-	background: #232128;
-	margin: 0px;
-	font-family: Arial,Helvetica,Arial,sans-serif;
+/* remember to define focus styles! */
+:focus {
+	outline: 0;
 }
-
-li {
+body {
+	line-height: 1;
+	color: black;
+	background: white;
+}
+ol, ul {
 	list-style: none;
 }
-
-a {
-	text-decoration: none;
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+	border-collapse: separate;
+	border-spacing: 0;
+}
+caption, th, td {
+	text-align: left;
+	font-weight: normal;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: "";
+}
+blockquote, q {
+	quotes: "" "";
 }
 
-* {
+/*=============================BEGIN CSS=================================*/
+
+html, body {
+  height: 100%;
+	width: 100%;
+  font-family: "Open Sans";
+}
+
+.left {
+	position: absolute;
+	display: inline-block;
+	width: 70%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	overflow: hidden;
+}
+
+.display {
+	position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.backgroundImage {
+	height: 100%;
+	width: 100%;
+}
+
+.backgroundImage:before {
+	content: "";
+	position: relative;
+	display: block;
+	height: 100%;
+	width: 100%;
+	background: linear-gradient(rgba(0, 23, 40, 0.6),rgba(0, 23, 40, 0.6)), url("../images/sunburst.png");
+	background-position: center;
+	animation: infRotate 25s linear infinite;
+	z-index: -1;
+}
+
+.caseImage {
+	height: 182px;
+	width: 240px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	background: url("../images/case1.png") no-repeat;
+	margin: auto;
+	transition: .2s;
+	cursor: pointer;
+}
+
+.caseImage:active {
+	padding-top: 10px;
+}
+
+.right {
+	display: inline-block;
+	position: relative;
+	float: right;
+	height: 100%;
+	width: 30%;
+	background: #090D10;
+	border-left: 2px #000 solid;
+}
+
+.rightMain {
+  margin-top: 175px;
+	margin-bottom: 135px;
+	width: 100%;
+	background: #101619;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+}
+
+.upgradeContainer {
+	display: none;
+	height: 100%;
+	width: 100%;
+	position: relative;
+}
+
+.inventoryContainer {
+	display: block;
+	height: 100%;
+	width: 100%;
+	float: left;
+	position: relative;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+
+.upgrade {
+	position: relative;
+	height: 100px;
+	width: 570px;
+	background: #090D10;
+	margin: 2px auto;
+	overflow: auto;
+	border-radius: 3px;
+	cursor: pointer;
+}
+
+.upgradePicture {
+	background: green;
+	height: 76px;
+	width: 76px;
+	float: left;
+	margin: 9px;
+	border: 2px #BA7729 solid;
+	background: url(http://vignette4.wikia.nocookie.net/cswikia/images/a/ad/Csgo-default_rare_item.png/revision/latest?cb=20150227163025) no-repeat;
+	background-size: cover;
+	background-size: 100% 75%;
+	background-position: left center;
+}
+
+.upgradeInfo {
+	color: #fff;
+	margin-top: 14px;
+}
+
+.upgradePrice {
+	margin-top: 10px;
+}
+
+.upgradeDesc {
+	margin-top: 10px;
+}
+
+.upgradeName {
+  font-weight: 600;
+}
+
+.tradeButtonContainer {
+	height: 135px;
+	position: absolute;
+	width: 100%;
+	bottom: 0;
+}
+
+.container {
+  height: 100%;
+	width: 100%;
+}
+
+.main {
+	height: 100%;
+}
+
+.button {
+  background: #fff;
+  color: #000;
+  border-radius: 5px;
+  height: 40px;
+  width: 135px;
+  margin-bottom: 5px;
+  line-height: 40px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.button:hover {
+  text-shadow: 0 0 10px rgba(255,255,255,0.5);
+  transform: scale(1.05);
+}
+
+.button:active {
+  background: linear-gradient(#1f8258, #114435);
+  text-shadow: 0 0 10px rgba(255,255,255,0.5);
+  transform: scale(1);
+  box-shadow: 0 0 35px rgba(43,137,68,0.5);
+}
+
+.buttonContainer {
+  margin-top: 25px;
+  display: flex;
+  justify-content: space-around;
+
+}
+
+.mainInfo {
+	overflow: hidden;
+	margin-top: 10px;
+	text-align: center;
+	color: #fff;
+}
+
+.money {
+	font-size: 35px;
+	margin-top: 10px;
+}
+
+.inventorySpace {
+	margin-top: 10px;
+	font-size: 20px;
+}
+
+.itemPrice {
+	font-size: 13px;
+	position: absolute;
+	bottom: 0;
+	height: 15px;
+	text-align: center;
+	background: #0C1013;
+	width: 100%;
+	line-height: 15px;
+	color: #fff;
+}
+
+.inventoryItem {
+	position: relative;
+	width: 70px;
+	height: 70px;
+	border: 1px #fff solid;
+	margin: 6.5px 0px 0px 6.5px;
+	float: left;
+	cursor: pointer;
+}
+
+.inventoryItem img {
+	width: 100%;
+	height: 100%;
+}
+
+#canvas {
+  background: #fff;
+}
+
+#drawing {
+	z-index: 1;
+}
+
+.inventory {
+	font-size: 20px;
+	font-family: 'Rajdhani', sans-serif;
+	text-align: center;
+	line-height: 40px;
+	color: #fff;
+	margin: 0 auto;
+	width: 150px;
+	height: 40px;
+	background: linear-gradient(#1d7751, #0e382c);
+	border: 2px #25793b solid;
+	border-radius: 5px;
+	text-shadow: 0 0 10px rgba(255,255,255,0.3);
+	transition: .1s;
+	transform: scale(1);
+	cursor: pointer;
+	-webkit-user-select: none;
+	box-shadow: 0 0 25px rgba(0,117,9,0.5);
+	overflow: hidden;
+}
+
+.shop {
+	font-size: 20px;
+	font-family: 'Rajdhani', sans-serif;
+	text-align: center;
+	line-height: 40px;
+	color: #fff;
+	margin: 0 auto;
+	width: 150px;
+	height: 40px;
+	background: linear-gradient(#1d7751, #0e382c);
+	border: 2px #25793b solid;
+	border-radius: 5px;
+	text-shadow: 0 0 10px rgba(255,255,255,0.3);
+	transition: .1s;
+	transform: scale(1);
+	cursor: pointer;
+	-webkit-user-select: none;
+	box-shadow: 0 0 25px rgba(0,117,9,0.5);
+	overflow: hidden;
+}
+
+.tradeButton {
+  font-size: 60px;
+  font-family: 'Rajdhani', sans-serif;
+  text-align: center;
+  line-height: 85px;
+  color: #fff;
+  margin: 20px auto;
+  width: 350px;
+  height: 85px;
+  background: linear-gradient(#1d7751, #0e382c);
+  border: 3px #25793b solid;
+  border-radius: 5px;
+  text-shadow: 0 0 20px rgba(255,255,255,0.3);
+  transition: .1s;
+  transform: scale(1);
+  cursor: pointer;
+  -webkit-user-select: none;
+  box-shadow: 0 0 25px rgba(0,117,9,0.5);
+  overflow: hidden;
+}
+
+.tradeButton:hover {
+  text-shadow: 0 0 20px rgba(255,255,255,0.5);
+  transform: scale(1.05);
+}
+
+.tradeButton:active {
+  background: linear-gradient(#1f8258, #114435);
+  text-shadow: 0 0 20px rgba(255,255,255,0.5);
+  transform: scale(1);
+  box-shadow: 0 0 30px rgba(43,137,68,0.5);
+}
+
+.tradeButton:after {
+  content: "";
+  position: relative;
+  top: -120px;
+  left: -90px;
+  display: block;
+  width: 35px;
+  height: 150px;
+  background: rgba(255, 255, 255, 0.5);
+  transform: rotate(35deg);
+  -webkit-filter: blur(20px);
+  transition: none;
+}
+
+.tradeButton:hover:after {
+  left: 400px;
+  transition: .3s ease-in-out;
+}
+
+
+::-webkit-scrollbar {
+	width: 17px;
+}
+
+::-webkit-scrollbar-track {
+   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.7);
+}
+
+::-webkit-scrollbar-thumb {
+   background-color: #25793B;
+}
+
+/*===============HELPERS===================*/
+
+.noselect {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -43,316 +401,20 @@ a {
     user-select: none;
 }
 
-.wrapper {
-	height: 100%;
-	width: 100%;
-}
+/*===============KEYFRAMES=================*/
 
-.header {
-	position: absolute;
-  height: 50px;
-  width: 100%;
-  top: 0;
-  background: #272A2D;
-  z-index: 1000;
-  color: #fff;
-  border-bottom: 2px #1D1D1D solid;
-}
-
-.header li {
-	float: right;
-	margin-right: 50px;
-}
-
-.header ul {
-	margin: 0px 15px 0px 15px;
-	padding: 17px 0px 10px 10px;
-}
-
-.header a {
-	color: white;
-}
-
-.header .logo {
-	float: left;
-}
-
-#game {
-    height: auto;
-    position: absolute;
-    bottom: 50px;
-    top: 50px;
-    left: 0;
-    right: 0;
-    overflow: hidden;
-}
-
-.leftSide {
-	height: 100%;
-	width: 75%;
-	background: #3F4245;
-	left: 0;
-	float: left;
-}
-
-.bananaSticker {
-
-}
-
-.bananaSticker img {
-  display: block;
-  margin: 250px auto;
-}
-
-.rightSide {
-	position: absolute;
-  background: #1F2124;
-  height: 100%;
-  width: 480px;
-  right: 0;
-	float: right;
-}
-
-.footer {
-	position: absolute;
-	height: 40px;
-	width: 100%;
-	background: #272A2D;
-	bottom: 0;
-	padding: 5px 0px 5px 0px;
-	color: #fff;
-}
-
-.footer li {
-	float: left;
-	margin-right: 55px;
-	font-size: 15px;
-}
-
-.footer ul {
-	padding: 12px 0px 10px 10px;
-}
-
-.footer a {
-	color: #fff;
-}
-
-/*
-.buttonContainer {
-	height: 100px;
-	width: 200px;
-	 background: white;
-	 float: right;
-	margin: auto;
-}
-*/
-
-.moneyData {
-    position: relative;
-    height: 175px;
-    background: #282A2C;
-    border-bottom: 1px #1D1D1D solid;
-}
-
-.moneyInfo {
-    float: left;
-    width: 298px;
-    height: 100%;
-    background: #1F1F1F;
-}
-
-.itemList {
-    position: relative;
-    bottom: 0;
-    padding-top: 10px;
-    height: auto;
-    width: 100%;
-    overflow-y: auto;
-}
-
-.item {
-	cursor: pointer;
-  background: #3C3C3C;
-  width: auto;
-  margin: 0px 10px 10px 10px;
-	color: #898989;
-	padding: 5px 0px 5px 10px;
-	border-radius: 5px;
-}
-
-.item:hover {
-	background: #515151;
-	color: #D3D3D3;
-}
-
-.item:active {
-	color: #FFFFFF;
-	background: #626262;
-}
-
-.itemDesc {
-	font-size: 12px;
-}
-
-.item div {
-  padding-bottom: 5px;
-}
-
-.itemCount {
-  color: #fff;
-  padding: 0px 10px;
-  float: right;
-	color: #898989;
-}
-
-.button {
-  cursor: pointer;
-  display: block;
-  width: 150px;
-  border-radius: 3px;
-  background-color: #84BB3C;
-  color: white;
-  margin: 15px auto;
-  text-align: center;
-  padding: 10px 0px;
-	border-top: 1px #9CEC33 solid;
-	border-right: 1px #9CEC33 solid;
-}
-
-.tradeButton {
-    cursor: pointer;
-    display: inline-block;
-    width: 150px;
-    border-radius: 3px;
-    background-color: #84BB3C;
-    color: white;
-    margin: 15px 15px 0px 15px;
-    float: right;
-    text-align: center;
-    padding: 10px 0px;
-    border-top: 1px #9CEC33 solid;
-    border-right: 1px #9CEC33 solid;
-    right: 0;
-}
-
-.tradeButton:hover {
-	background-color: #81CA22;
-}
-
-.tradeButton:active {
-	background-color: #669030;
-}
-
-.tradeButton:disabled {
-	background-color: red;
-}
-
-.button:hover {
-	background-color: #81CA22;
-}
-
-.button:active {
-	background-color: #669030;
-}
-
-.button:disabled {
-	background-color: red;
-}
-
-
-#moneyTotal {
-    padding: 15px 0px 0px 15px;
-    color: #2DFF00;
-    font-size: 35px;
-    text-shadow: 1px 1px #288326;
-    width: 250px;
-    float: left;
-		text-align: center;
-}
-
-#moneyPs {
-    color: #4F4F4F;
-    font-size: 15px;
-    padding: 5px 0px 0px 15px;
-    width: 250px;
-    float: left;
-		text-align: center;
-}
-
-.jackpotButton {
-    cursor: pointer;
-    display: inline-block;
-    width: 150px;
-    border-radius: 3px;
-    background-color: #ECC30C;
-    color: white;
-    margin: 15px 15px 0px 15px;
-    float: right;
-    text-align: center;
-    padding: 10px 0px;
-    border-top: 1px #FFEB49 solid;
-    border-right: 1px #FFF600 solid;
-    right: 0;
-}
-
-.jackpotButton:hover {
-	background: #FFD725;
-}
-
-.jackpotButton:active {
-	background: #E8A80F;
-}
-
-
-.priceAfford {
-	color: #2DFF00;
-}
-
-.priceCantAfford {
-	color: #9C1313;
-}
-
-.upgradeContainer {
-    height: 75px;
-    position: relative;
-    background: #1D1D1D;
-    width: 100%;
-    overflow-y: hidden;
-}
-
-.upgradeContainer:hover {
-	height: auto;
-	min-height: 75px;
-}
-
-.upgrade {
-    background-image: url("http://i.imgur.com/mTleRS0.png");
-    height: 69px;
-    width: 69px;
-    background: #FFC800;
-    float: left;
-    margin: 3px 0px 3px 3px;
-}
-
-.upgrade:hover {
-    background: #FFD53B;
-}
-
-.upgrade img {
-    position: relative;
-    top: 26%;
-    display: block;
-    height: 32px;
-    width: 32px;
-    margin: 0 auto;
-    opacity: 0.4;
-}
-
-.jumbotron {
-    position: relative;
-    top: 46%;
-    height: 80px;
-    width: 200px;
-    margin: auto;
-    background-image: url("http://i.imgur.com/ns19Kn0.png");
+@keyframes infRotate {
+	from {
+		-ms-transform: rotate(0deg) scale(1.75);
+    -moz-transform: rotate(0deg) scale(1.75);
+    -webkit-transform: rotate(0deg) scale(1.75);
+    -o-transform: rotate(0deg) scale(1.75);
+    transform: rotate(0deg) scale(1.75);
+	} to {
+		-ms-transform: rotate(360deg) scale(1.75);
+    -moz-transform: rotate(360deg) scale(1.75);
+    -webkit-transform: rotate(360deg) scale(1.75);
+    -o-transform: rotate(360deg) scale(1.75);
+    transform: rotate(360deg) scale(1.75);
+	}
 }

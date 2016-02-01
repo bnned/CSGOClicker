@@ -1,73 +1,65 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<link rel="stylesheet" href="./css/stylesheet.css" media="screen" title="no title" charset="utf-8">
-		<title>CSGO CLICKER</title>
-	</head>
-	<body>
-		<div class="wrapper">
-			<div class="header">
-				<ul>
-					<li class="logo"><a href="#">CSGO Clicker</a></li>
-					<li><a href="#">Login</a></li>
-					<li><a href="#">Help</a></li>
-				</ul>
-			</div>
-			<div id="game">
-				<div class="leftSide">
-					<div class="jumbotron">
-
-					</div>
-					<div class="bananaSticker">
-						<!--<canvas id="canvasMain" width="300" height="300">bruh u need to upgrade forreal :/</canvas> -->
-					</div>
-				</div>
-				<div class="rightSide">
-					<div class="moneyData">
-						<div class="moneyInfo">
-							<div id="moneyTotal">$0.00</div>
-							<div id="moneyPs">$0.00</div>
-						</div>
-						<div class="tradeButton" id="trade">Accept Trade!</div>
-						<div class="jackpotButton" id="jackpot">Enter Jackpot!</div>
-					</div>
-					<div class="upgradeContainer">
-						<div class="upgrade" id="upgrade01">
-							<img src="http://i.imgur.com/mTleRS0.png" alt="" />
-						</div>
-					</div>
-					<div class="itemList">
-						<div class="item" id="buyAutoBump">
-							<div class="itemTitle">Auto Bump</div>
-							<div class="itemDesc">Auto bump your trades so you dont have to wake up every 30 minutes.</div>
-							<div class="itemCount" id="autoBumpCount"></div>
-							<div class="price" id="price01">Cost: <span></span></div>
-						</div>
-						<div class="item" id="buyVIP">
-							<div class="itemTitle">VIP Membership</div>
-							<div class="itemDesc">See the top float values in the world without them knowning.</div>
-							<div class="itemCount" id="VIPCount"></div>
-							<div class="price" id="price02">Cost: <span></span></div>
-						</div>
-						<div class="item" id="buyMarketBot">
-							<div class="itemTitle">Market Bot</div>
-							<div class="itemDesc">Time to invest in something a little more worth-while. It takes a while to get money, but its worth it in the long run.</div>
-							<div class="itemCount" id="marketBotCount"></div>
-							<div class="price" id="price03">Cost: <span></span></div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="footer">
-				<ul>
-					<div align="center"><a href="http://www.simplehitcounter.com" target="_blank"><img src="http://simplehitcounter.com/hit.php?uid=2009579&amp;f=16777215&amp;b=0" border="0" height="18" width="83" alt="web counter" style="display: none !important;"></a></div>
-					<li>Copyright © csgoclicker.com 2015</li>
-					<li><a href="#">About Us</a></li>
-					<li><a href="#">Contact</a></li>
-				</ul>
-			</div>
-		</div>
-		<script src="./js/script.js" charset="utf-8"></script>
-	</body>
-</html>
+  <head>
+    <meta charset="utf-8">
+    <title>CSGOClicker</title>
+    <link href='https://fonts.googleapis.com/css?family=Rajdhani:600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="./css/stylesheet.css" media="screen" title="no title" charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="navbar">
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+      <div class="main">
+        <canvas id="drawing"></canvas>
+        <!-- <canvas id="canvas"></canvas> -->
+        <div class="left">
+          <div class="display">
+            <div class="backgroundImage"></div>
+            <div class="caseImage" id="case"></div>
+          </div>
+        </div>
+        <div class="right">
+          <div class="mainInfo">
+            <div class="money" id="money"></div>
+            <div class="inventorySpace" id="inventorySpace"></div>
+          </div>
+          <div class="buttonContainer">
+            <div class="inventory button" id="inventoryButton">Inventory</div>
+            <div class="shop button" id="upgradeButton">Shop</div>
+          </div>
+          <div class="rightMain">
+            <div class="inventoryContainer">
+              <!--
+              <div class="inventoryItem">
+                <div class="itemPrice">$5.50</div>
+                <img src="http://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgposbaqKAxf0v73dS9D69O4q4eHmPT_DLfYkWNF18lwmO7Eu4mh2lXj-RJtajjxJoWcIQ83Y13X-QO2ye_ojJ61u8yfynUwvXYq4XbD30vgIiQpgfY/360fx360f">
+              </div>
+            -->
+            </div>
+            <div class="upgradeContainer">
+              <div class="upgrade">
+                <div class="upgradePicture"></div>
+                <div class="upgradeInfo">
+                  <div class="upgradeName">Test Upgrade</div>
+                  <div class="upgradeDesc">Test Description lorem ipsum dolar sit amet</div>
+                  <div class="upgradePrice">$5.00</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tradeButtonContainer">
+            <div class="tradeButton" id="acceptButton">ACCEPT</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./js/script.js" type="text/javascript"></script>
+  </body>
+</html>
