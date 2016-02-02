@@ -3,7 +3,7 @@
 var itemCounter = 0;
 var fps = 1000 / 30;
 
-var money = 200;
+var money = 200.00;
 var currentCase = "case1";
 
 
@@ -15,6 +15,7 @@ var currentCase = "case1";
 
 
 //sorting: by money, rarity
+var popup = true;
 
 var inventory = {};
 
@@ -26,6 +27,10 @@ var keyPrice = 2.50;
 var casePrice = {
   case1: 5.00
 };
+
+var caseNames = {
+  case1: "Weapon Case 1"
+}
 
 // cases
 var cases = {
@@ -86,7 +91,7 @@ var cases = {
     knife: {
       weap1: {
         name: "★ Gut Knife | Safari Mesh",
-        price: 13.37,
+        price: 63.37,
         img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf1ObcTi5S09Gzh4i0g_b6DLbUkmJE5fp9i_vG8MLx2QSy_BdpZmmlcoWVdQdvYV2G-1bvw-zv18O96MzByCA27nYrtyqPgVXp1t9T3ex9"
       }
     }
@@ -150,6 +155,12 @@ function randSkin() {
        console.log(identifier.img);
        inventory["item" + itemCounter] = itemDisp(identifier.name, identifier.price, identifier.img);
        drawItem(inventory["item" + itemCounter]);
+
+       if (popup) {
+         modalDraw();
+         $('.modalWindow').toggle();
+       }
+
        inventoryCurrent += 1;
        itemCounter += 1;
      }
@@ -172,6 +183,11 @@ function drawItem(array) {
     var img = array[2] + "/70fx70f";
 
     $(".inventoryContainer").append('<div class="inventoryItem" id="'+ 'item' + itemCounter +'"><div class="itemPrice">' + price + '</div> <img src=' + img + '> </div>');
+}
+
+function modalDraw() {
+  $("#modalImage").attr("src", inventory["item" + itemCounter][2] + "/360fx360f");
+  $("#modalSkinName").html(inventory["item" + itemCounter][0]);
 }
 
 /*===============CLICKS===============*/
@@ -202,6 +218,10 @@ $("#inventoryButton").click(function() {
   }
 });
 
+$("#unboxButton").click(function() {
+  $('.modalWindow').toggle();
+});
+
 $("#acceptButton").click(function() {
   money += 0.15;
 });
@@ -213,8 +233,20 @@ $("#upgradeButton").click(function() {
   }
 });
 
+function caseInfo() {
+  $('#caseName').html(caseNames[currentCase]);
+  $('#casePrice').html("Case Price: $" + casePrice[currentCase].toFixed(2) + "  |");
+  $('#keyPrice').html("Key Price: $" + keyPrice.toFixed(2));
+}
+
+function init() {
+  caseInfo();
+}
+
+init();
+
 function update() {
-  $('#money').html("$" + +money.toFixed(2));
+  $('#money').html("$" + money.toFixed(2));
   $('#inventorySpace').html(inventoryCurrent + "/" + inventoryMax);
 }
 
@@ -223,6 +255,14 @@ function update() {
 setInterval(function() {
   update();
 }, 1000 / fps);
+
+setTimeout(function() {
+  $("#notif").toggleClass("hidden");
+  setTimeout(function() {
+    $("#notif").toggleClass("hidden");
+  }, 5000);
+}, 1500);
+
 /*===============CANVAS===============*/
 
 /*

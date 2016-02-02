@@ -53,6 +53,37 @@ html, body {
   font-family: "Open Sans";
 }
 
+.navbar {
+	position: absolute;
+	top: 0;
+	height: 49px;
+	background: #101619;
+	width: 100%;
+	border-bottom: 1px #186144 solid;
+	z-index: 2;
+}
+
+.navbar ul {
+
+}
+
+.navbar ul li {
+
+}
+
+.headerLogo {
+	margin-left: 30px;
+	float: left;
+}
+
+.navbar ul li a {
+	color: #fff;
+	text-decoration: none;
+	margin-right: 50px;
+	line-height: 50px;
+	float: right;
+}
+
 .left {
 	position: absolute;
 	display: inline-block;
@@ -104,14 +135,101 @@ html, body {
 	padding-top: 10px;
 }
 
-.right {
+.caseInfoContainer {
+	position: absolute;
+	right: 0;
+	left: 0;
+	bottom: 25vh;
+	text-align: center;
+	width: 450px;
+	margin: 50px auto;
+}
+
+.caseName {
+	font-size: 22px;
+	color: #fff;
+}
+
+.priceContainer {
+	font-weight: 200;
+	color: #fff;
+	margin-top: 5px;
+}
+
+.casePrice {
 	display: inline-block;
+}
+
+.keyPrice {
+	display: inline-block;
+}
+
+.modalWindow {
+	display: none;
+	position: absolute;
+	background: rgba(0, 0, 0, 0.5);
+	right: 0;
+	left: 0;
+	top: 50px;
+	bottom: 0;
+	z-index: 10;
+}
+
+.modalMain {
 	position: relative;
-	float: right;
-	height: 100%;
-	width: 30%;
+	margin: 8% auto 0;
+	height: 600px;
+	width: 700px;
+	background: #101619;
+	border: 1px #186144 solid;
+}
+
+.modalSkinName {
+	font-size: 25px;
+	color: #fff;
+	text-align: center;
+}
+
+.modalMain img {
+	display: block;
+	height: 450px;
+	width: 450px;
+	margin: 0 auto;
+}
+
+.unboxButton {
+	position: absolute;
+	right: 0;
+	left: 0;
+  bottom: 30px;
+	font-size: 20px;
+	font-family: 'Rajdhani', sans-serif;
+	text-align: center;
+	line-height: 40px;
+	color: #fff;
+	margin: 0 auto;
+	width: 150px;
+	height: 40px;
+	background: linear-gradient(#1d7751, #0e382c);
+	border: 2px #25793b solid;
+	border-radius: 5px;
+	text-shadow: 0 0 10px rgba(255,255,255,0.3);
+	transition: .1s;
+	transform: scale(1);
+	cursor: pointer;
+	-webkit-user-select: none;
+	box-shadow: 0 0 25px rgba(0,117,9,0.5);
+	overflow: hidden;
+}
+
+.right {
+	position: absolute;
+	top: 50px;
+	right: 0;
+	bottom: 0;
+	width: 575px;
 	background: #090D10;
-	border-left: 2px #000 solid;
+	border-left: 1px #186144 solid;
 }
 
 .rightMain {
@@ -143,8 +261,14 @@ html, body {
 	overflow-x: hidden;
 }
 
+.upgrade.cantAfford {
+	background: #150C0C;
+	/*color: #080808;*/
+}
+
 .upgrade {
 	position: relative;
+	color: #fff;
 	height: 100px;
 	width: 570px;
 	background: #090D10;
@@ -168,7 +292,6 @@ html, body {
 }
 
 .upgradeInfo {
-	color: #fff;
 	margin-top: 14px;
 }
 
@@ -197,19 +320,9 @@ html, body {
 }
 
 .main {
+	overflow-x: hidden;
+	top: 50px;
 	height: 100%;
-}
-
-.button {
-  background: #fff;
-  color: #000;
-  border-radius: 5px;
-  height: 40px;
-  width: 135px;
-  margin-bottom: 5px;
-  line-height: 40px;
-  text-align: center;
-  cursor: pointer;
 }
 
 .button:hover {
@@ -264,7 +377,7 @@ html, body {
 	position: relative;
 	width: 70px;
 	height: 70px;
-	border: 1px #fff solid;
+	border: 1px #1B2329 solid;
 	margin: 6.5px 0px 0px 6.5px;
 	float: left;
 	cursor: pointer;
@@ -273,6 +386,28 @@ html, body {
 .inventoryItem img {
 	width: 100%;
 	height: 100%;
+}
+
+.notification.hidden {
+	top: -50px;
+}
+
+.notification {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 7px;
+	width: 800px;
+	height: 35px;
+	line-height: 35px;
+	text-align: center;
+	background: #186144;
+	color: #fff;
+	margin: 0 auto;
+	z-index: 10;
+	border-radius: 3px;
+	cursor: pointer;
+	transition: .5s;
 }
 
 #canvas {
