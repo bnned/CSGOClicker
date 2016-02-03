@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>CSGOClicker</title>
     <link href='https://fonts.googleapis.com/css?family=Rajdhani:600' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="./css/stylesheet.css" media="screen" title="no title" charset="utf-8">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 
@@ -30,15 +31,17 @@
         <!-- <canvas id="canvas"></canvas> -->
         <div class="left">
           <div class="display">
-            <div class="caseInfoContainer">
-              <div class="caseName" id="caseName"></div>
-              <div class="priceContainer">
-                <div class="casePrice" id="casePrice"></div>
-                <div class="keyPrice" id="keyPrice"></div>
+
+            <div class="backgroundImage"></div>
+            <div class="caseImage" id="case">
+              <div class="caseInfoContainer">
+                <div class="caseName" id="caseName"></div>
+                <div class="priceContainer">
+                  <div class="casePrice" id="casePrice"></div>
+                  <div class="keyPrice" id="keyPrice"></div>
+                </div>
               </div>
             </div>
-            <div class="backgroundImage"></div>
-            <div class="caseImage" id="case"></div>
 
           </div>
         </div>
@@ -61,7 +64,8 @@
             -->
             </div>
             <div class="upgradeContainer">
-              <div class="upgrade cantAfford">
+              <!--
+              <div class="upgrade cantAfford" id="gay">
                 <div class="upgradePicture"></div>
                 <div class="upgradeInfo">
                   <div class="upgradeName">Test Upgrade</div>
@@ -69,6 +73,7 @@
                   <div class="upgradePrice">$999999999.00</div>
                 </div>
               </div>
+            -->
             </div>
           </div>
           <div class="tradeButtonContainer">

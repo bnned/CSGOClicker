@@ -1,7 +1,7 @@
 // CSGOClicker - Case CSGOClicker
 //money, inventory, jackpot
 var itemCounter = 0;
-var fps = 1000 / 30;
+var fps = 30;
 
 var money = 200.00;
 var currentCase = "case1";
@@ -27,6 +27,9 @@ var keyPrice = 2.50;
 var casePrice = {
   case1: 5.00
 };
+
+var caseDiscount = 0;
+var keyDiscount = 0;
 
 var caseNames = {
   case1: "Weapon Case 1"
@@ -204,8 +207,11 @@ $(document).on("click", ".inventoryItem", function() {
 
 $("#case").click(function() {
   if (inventoryCurrent < inventoryMax) {
-    if (money >= casePrice[currentCase] + keyPrice) {
-      money -= casePrice[currentCase] + keyPrice;
+    var price = (casePrice[currentCase] - caseDiscount) + (keyPrice - keyDiscount);
+    if (price >= 0) {
+      money -= price;
+      randSkin();
+    } else {
       randSkin();
     }
   }
@@ -235,20 +241,89 @@ $("#upgradeButton").click(function() {
 
 function caseInfo() {
   $('#caseName').html(caseNames[currentCase]);
-  $('#casePrice').html("Case Price: $" + casePrice[currentCase].toFixed(2) + "  |");
-  $('#keyPrice').html("Key Price: $" + keyPrice.toFixed(2));
+  $('#casePrice').html("Case Price: $" + (casePrice[currentCase] - caseDiscount).toFixed(2) + "  |");
+  $('#keyPrice').html("Key Price: $" + (keyPrice - keyDiscount).toFixed(2));
 }
 
-function init() {
-  caseInfo();
-}
 
-init();
 
 function update() {
   $('#money').html("$" + money.toFixed(2));
   $('#inventorySpace').html(inventoryCurrent + "/" + inventoryMax);
 }
+
+/*===============UPGRADES===============*/
+
+$(document).on("click", ".upgrade", function() {
+  var name = upgrades[this.id]["name"];
+  var desc = upgrades[this.id]["desc"];
+  var price = upgrades[this.id]["price"];
+  var cp = upgrades[this.id]["cp"];
+  var kp = upgrades[this.id]["kp"];
+  var is = upgrades[this.id]["is"];
+  var amount = upgrades[this.id]["amount"];
+  var vis = upgrades[this.id]["vis"];
+
+  if (money >= price) {
+    money -= price;
+    keyDiscount += kp;
+    caseDiscount += cp;
+    inventoryMax += is;
+    amount += 1;
+    visibility = 0;
+    $(this).remove();
+  }
+  caseInfo();
+});
+
+
+var upgrades = {
+  upgrade1: {name: "Beginner Package", desc: "2¢ off keys and cases. Oh, and one more inventory Spot.", price: 25, cp: 0.02, kp: 0.02, is: 1, amount: 0, img: "", vis: 1},
+  upgrade2: {name: "Inventory Space", desc: "Helps you hoard skins. 2 skin boost in inventory space.", price: 45, cp: 0.05, kp: 0.05, is: 2, amount: 0, img: "", vis: 1}
+};
+
+function drawUpgrades() {
+  for (var upgrade in upgrades) {
+    if (upgrades.hasOwnProperty(upgrade)) {
+    $(".upgradeContainer").append('<div class="upgrade" id="' + upgrade + '"> <div class="upgradePicture"> <img src="' + upgrades[upgrade]["img"] + '"></div> <div class="upgradeInfo"> <div class="upgradeName">' + upgrades[upgrade]["name"] + '</div> <div class="upgradeDesc">' + upgrades[upgrade]["desc"] + '</div> <div class="upgradePrice">' + "$" + upgrades[upgrade]["price"] + '</div> </div> </div>');
+    }
+  }
+}
+
+
+function buyUpgrade(id) {
+  var thisId = id;
+  var name = upgrades[id]["name"];
+  var desc = upgrades[id]["desc"];
+  var price = upgrades[id]["price"];
+  var cp = upgrades[id]["cp"];
+  var kp = upgrades[id]["kp"];
+  var is = upgrades[id]["is"];
+  var amount = upgrades[id]["amount"];
+  var vis = upgrades[id]["vis"]
+
+  if (money >= price) {
+    money -= price;
+    keyDiscount += kp;
+    caseDiscount += cp;
+    inventoryMax += is;
+    amount += 1;
+    visibility = 0;
+    $(thisId).remove();
+    console.log(id);
+  }
+  caseInfo();
+}
+
+/*===============VISUAL===============*/
+
+function backgroundCheck() {
+  $('.display').width($(window).width() - 575);
+}
+
+$(window).on('resize', function(){
+    backgroundCheck();
+});
 
 /*===============TICKERS===============*/
 
@@ -346,3 +421,10 @@ function drawOrder() {
 
 drawOrder();
 */
+
+function init() {
+  caseInfo();
+  backgroundCheck();
+  drawUpgrades()
+}
+init();

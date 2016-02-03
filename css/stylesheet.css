@@ -51,6 +51,7 @@ html, body {
   height: 100%;
 	width: 100%;
   font-family: "Open Sans";
+	cursor: default;
 }
 
 .navbar {
@@ -98,6 +99,7 @@ html, body {
 	position: relative;
   height: 100%;
   width: 100%;
+	background: #1E2C36;
 }
 
 .backgroundImage {
@@ -114,7 +116,6 @@ html, body {
 	background: linear-gradient(rgba(0, 23, 40, 0.6),rgba(0, 23, 40, 0.6)), url("../images/sunburst.png");
 	background-position: center;
 	animation: infRotate 25s linear infinite;
-	z-index: -1;
 }
 
 .caseImage {
@@ -135,6 +136,7 @@ html, body {
 	padding-top: 10px;
 }
 
+/*
 .caseInfoContainer {
 	position: absolute;
 	right: 0;
@@ -144,6 +146,18 @@ html, body {
 	width: 450px;
 	margin: 50px auto;
 }
+*/
+
+.caseInfoContainer {
+	position: absolute;
+	right: 0;
+	left: -45%;
+	bottom: -50px;
+	text-align: center;
+	width: 450px;
+}
+
+
 
 .caseName {
 	font-size: 22px;
@@ -176,8 +190,12 @@ html, body {
 }
 
 .modalMain {
-	position: relative;
-	margin: 8% auto 0;
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	margin: auto;
 	height: 600px;
 	width: 700px;
 	background: #101619;
