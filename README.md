@@ -1,5 +1,5 @@
 # CSGOClicker
 A CSGO based incremental game.
-Intial Release
+Initial Release
 -------------------------------
 https://bnned.github.io/CSGOClicker/
