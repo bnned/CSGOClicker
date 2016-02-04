@@ -133,7 +133,7 @@ var rarityValue = {
 function randSkin() {
      var skinsArray = [];
      var randSkin = "";
-     var randNum = Math.random();
+     var randNum = Math.random().toFixed(3); //rounded to 3 places to make it slightly easier to get certain rarities
      var rarity = "";
      var identifier;
 
