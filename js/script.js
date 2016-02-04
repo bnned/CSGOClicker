@@ -113,6 +113,10 @@ var totalKnivesOpened = 0;
 
 /*===============LOGIC===============*/
 
+function beatboy() {
+  money = 5000;
+  inventoryMax = 200;
+}
 
 //cases -> case# -> rarity  -> weaponname, price, img
 //cases -> case1 -> milspec -> weap1.name
@@ -157,7 +161,7 @@ function randSkin() {
        console.log(identifier.price);
        console.log(identifier.img);
        inventory["item" + itemCounter] = itemDisp(identifier.name, identifier.price, identifier.img);
-       drawItem(inventory["item" + itemCounter]);
+       drawItem(inventory["item" + itemCounter], rarity);
 
        if (popup) {
          modalDraw();
@@ -180,12 +184,12 @@ function randSkin() {
 
 }
 
-function drawItem(array) {
+function drawItem(array, rarity) {
     var name = array[0];
     var price = "$" + array[1];
     var img = array[2] + "/70fx70f";
 
-    $(".inventoryContainer").append('<div class="inventoryItem" id="'+ 'item' + itemCounter +'"><div class="itemPrice">' + price + '</div> <img src=' + img + '> </div>');
+    $(".inventoryContainer").append('<div class="inventoryItem ' + rarity + '" id="'+ 'item' + itemCounter +'"><div class="itemPrice">' + price + '</div> <img src=' + img + '> </div>');
 }
 
 function modalDraw() {
@@ -208,10 +212,10 @@ $(document).on("click", ".inventoryItem", function() {
 $("#case").click(function() {
   if (inventoryCurrent < inventoryMax) {
     var price = (casePrice[currentCase] - caseDiscount) + (keyPrice - keyDiscount);
-    if (price >= 0) {
+    if (price >= 0 && money >= price) {
       money -= price;
       randSkin();
-    } else {
+    } else if (price < 0 && money >= price) {
       randSkin();
     }
   }
@@ -238,6 +242,18 @@ $("#upgradeButton").click(function() {
     $(".inventoryContainer").toggle();
   }
 });
+
+$('.settings').click(function() {
+  $('.settingsList').toggleClass("hidden");
+})
+
+$('#popupCheckbox').change(function() {
+  if (this.checked) {
+    popup = false;
+  } else {
+    popup = true;
+  }
+})
 
 function caseInfo() {
   $('#caseName').html(caseNames[currentCase]);

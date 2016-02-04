@@ -406,6 +406,34 @@ html, body {
 	height: 100%;
 }
 
+.inventoryItem.consumer {
+	border: 1px #B0C3D9 solid;
+}
+
+.inventoryItem.industrial {
+	border: 1px #5E98D9 solid;
+}
+
+.inventoryItem.milspec {
+	border: 1px #4B69FF solid;
+}
+
+.inventoryItem.restricted {
+	border: 1px #8847FF solid;
+}
+
+.inventoryItem.classified {
+	border: 1px #D32CE6 solid;
+}
+
+.inventoryItem.covert {
+	border: 1px #EB4B4B solid;
+}
+
+.inventoryItem.knife {
+	border: 1px #FFD700 solid;
+}
+
 .notification.hidden {
 	top: -50px;
 }
@@ -426,6 +454,48 @@ html, body {
 	border-radius: 3px;
 	cursor: pointer;
 	transition: .5s;
+}
+
+.settings {
+	float: right;
+	height: 49px;
+	width: 50px;
+	border-left: 1px #186144 solid;
+	background-image: url(http://i.imgur.com/Pw82Pa6.png);
+	background-repeat: no-repeat;
+	background-size: 70% 70%;
+	background-position: center;
+	transition: .1s;
+}
+
+.settings:hover {
+	background-color: #1A2929;
+}
+
+.settingsList {
+	color: #fff;
+	position: absolute;
+	right: 0;
+	top: 50px;
+	width: 575px;
+	background: #1A2929;
+	border-bottom: 1px #186144 solid;
+	z-index: 1;
+	transition: .5s;
+}
+
+.settingsList li {
+	list-style: none;
+	margin: 10px 20px;
+}
+
+.settingsList li h1 {
+	font-size: 25px;
+	margin-bottom: 25px;
+}
+
+.settingsList.hidden {
+	top: -200px;
 }
 
 #canvas {
