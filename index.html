@@ -16,8 +16,6 @@
         <ul>
           <li class="headerLogo"><a href="#">CSGOClicker</a></li>
           <div class="settings"></div>
-
-          <li><a href="#">Case</a></li>
           <li><a href="#">About</a></li>
         </ul>
       </div>
@@ -37,9 +35,9 @@
         <!-- <canvas id="canvas"></canvas> -->
         <div class="left">
           <div class="display">
-
             <div class="backgroundImage"></div>
-            <div class="caseImage" id="case">
+            <div class="caseDisplay" id="case">
+              <img src="https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXU5A1PIYQNqhpOSV-fRPasw8rsUFJ5KBFZv668FFUuh6qZJmlD7tiyl4OIlaGhYuLTzjhVupJ12urH89ii3lHlqEdoMDr2I5jVLFFSv_J2Rg/240fx182f" id="caseDisplayImage" />
               <div class="caseInfoContainer">
                 <div class="caseName" id="caseName"></div>
                 <div class="priceContainer">
@@ -48,7 +46,6 @@
                 </div>
               </div>
             </div>
-
           </div>
         </div>
         <div class="right">
@@ -56,9 +53,11 @@
             <div class="money" id="money"></div>
             <div class="inventorySpace" id="inventorySpace"></div>
           </div>
-          <div class="buttonContainer">
-            <div class="inventory button" id="inventoryButton">Inventory</div>
-            <div class="shop button" id="upgradeButton">Shop</div>
+          <div class="tabContainer">
+            <div class="tab active" id="inventoryTab">Inventory</div>
+            <div class="tab" id="upgradeTab">Shop</div>
+            <div class="tab" id="caseTab">Case</div>
+            <div class="tab" id="jackpotTab">Jackpot</div>
           </div>
           <div class="rightMain">
             <div class="inventoryContainer">
@@ -77,6 +76,17 @@
                   <div class="upgradeName">Test Upgrade</div>
                   <div class="upgradeDesc">Test Description lorem ipsum dolar sit amet</div>
                   <div class="upgradePrice">$999999999.00</div>
+                </div>
+              </div>
+            -->
+            </div>
+            <div class="caseContainer">
+              <!--
+              <div class="case locked">
+                <div class="casePicture"></div>
+                <div class="caseInfo">
+                  <div class="caseName"></div>
+                  <div class="caseValue"></div>
                 </div>
               </div>
             -->
