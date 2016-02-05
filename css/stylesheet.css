@@ -425,7 +425,8 @@ html, body {
 }
 
 .casePicture img {
-	height: 100%;
+	margin-top: 7px;
+	height: 80%;
 	width: 100%;
 }
 

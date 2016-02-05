@@ -3,7 +3,7 @@
 var itemCounter = 0;
 var fps = 30;
 
-var money = 200.00;
+var money = 7.50;
 var currentCase = "case1";
 
 
