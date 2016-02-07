@@ -325,11 +325,18 @@ function randSkin() {
 
          identifier = knives["regular"][randSkin];
 
-         console.log(identifier.name);
-         console.log(identifier.price);
-         console.log(identifier.img);
-         inventory["item" + itemCounter] = itemDisp(identifier.name, identifier.price, identifier.img);
-         drawItem(inventory["item" + itemCounter], rarity);
+         //console.log(identifier.name);
+         //console.log(identifier.price);
+         //console.log(identifier.img);
+         var toEncode = "knives['" + knifeCase + "']" + "['" + randSkin + "']";
+         inventory["item" + itemCounter] = window.btoa(toEncode);
+
+         drawItem(itemDisp(identifier.name, identifier.price, identifier.img), rarity);
+
+         if (popup) {
+           modalDraw(identifier.name, identifier.img);
+           $('.modalWindow').toggle();
+         }
 
        } else {
          //console.log(r);
@@ -342,13 +349,17 @@ function randSkin() {
          //console.log(identifier.name);
          //console.log(identifier.price);
          //console.log(identifier.img);
-         inventory["item" + itemCounter] = itemDisp(identifier.name, identifier.price, identifier.img);
-         drawItem(inventory["item" + itemCounter], rarity);
-       }
+         var toEncode = "cases['" + currentCase + "']" + "['" + r + "']" + "['" + randSkin + "']";
+         //console.log(toEncode);
+         inventory["item" + itemCounter] = window.btoa(toEncode);
+         //console.log(cases[currentCase][r][randSkin]);
 
-       if (popup) {
-         modalDraw();
-         $('.modalWindow').toggle();
+         drawItem(itemDisp(identifier.name, identifier.price, identifier.img), rarity);
+
+         if (popup) {
+           modalDraw(identifier.name, identifier.img);
+           $('.modalWindow').toggle();
+         }
        }
 
        inventoryCurrent += 1;
@@ -375,13 +386,39 @@ function drawItem(array, rarity) {
     $(".inventoryContainer").append('<div class="inventoryItem ' + rarity + '" id="'+ 'item' + itemCounter +'"><div class="itemPrice">' + price + '</div> <img src=' + img + '> </div>');
 }
 
+function inventoryClear() {
+  inventory = {};
+  $('.inventoryContainer').html("");
+}
+
+function drawInventory() {
+  // I know this is cancer dont hate please
+  var keys = Object.keys(inventory);
+
+  for (var i = 0; i < keys.length; i++) {
+    var rarity = atob(inventory[keys[i]]).replace(/\[[^\[]*$/g, "").match(/\[[^\[]*$/g).toString().match(/\b\w*\b/)[0];
+    if (rarity === "regular") {
+      rarity = "knife";
+    }
+    var item = eval(atob(inventory[keys[i]]));
+    var name = item["name"];
+    var price = "$" + item["price"].toFixed(2);
+    var img = item["img"] + "/70fx70f";
+
+    $(".inventoryContainer").append('<div class="inventoryItem ' + rarity + '" id="'+ 'item' + i +'"><div class="itemPrice">' + price + '</div> <img src=' + img + '> </div>');
+  }
+}
+
 
 /*===============CLICKS===============*/
 
 $(document).on("click", ".inventoryItem", function() {
   if (inventory[this.id]) {
+    var item = eval(atob(inventory[this.id]));
+    //console.log(item);
     inventoryCurrent -= 1;
-    money += inventory[this.id][1];
+    money += (item['price']);
+    //console.log(item['price']);
     delete inventory[this.id];
     $(this).remove();
   }
@@ -455,6 +492,10 @@ $('#popupCheckbox').change(function() {
   }
 });
 
+$(".clearGameState").click(function() {
+  clearGameState();
+});
+
 /*===============DOM MANIP===============*/
 
 function caseInfo() {
@@ -469,9 +510,9 @@ function update() {
   $('#inventorySpace').html(inventoryCurrent + "/" + inventoryMax);
 }
 
-function modalDraw() {
-  $("#modalImage").attr("src", inventory["item" + itemCounter][2] + "/360fx360f");
-  $("#modalSkinName").html(inventory["item" + itemCounter][0]);
+function modalDraw(name, img) {
+  $("#modalImage").attr("src", img + "/360fx360f");
+  $("#modalSkinName").html(name);
 }
 
 /*===============UPGRADES===============*/
@@ -483,16 +524,13 @@ $(document).on("click", ".upgrade", function() {
   var cp = upgrades[this.id]["cp"];
   var kp = upgrades[this.id]["kp"];
   var is = upgrades[this.id]["is"];
-  var amount = upgrades[this.id]["amount"];
-  var vis = upgrades[this.id]["vis"];
 
   if (money >= price) {
     money -= price;
     keyDiscount += kp;
     caseDiscount += cp;
     inventoryMax += is;
-    amount += 1;
-    visibility = 0;
+    upgradesPurchased.push(this.id);
     $(this).remove();
   }
   caseInfo();
@@ -500,41 +538,49 @@ $(document).on("click", ".upgrade", function() {
 
 
 var upgrades = {
-  upgrade1: {name: "Beginner Package", desc: "2¢ off keys and cases. Oh, and one more inventory Spot.", price: 25, cp: 0.02, kp: 0.02, is: 1, amount: 0, img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXU5A1PIYQNqhpOSV-fRPasw8rsRVx4MwFo5_T3eAQ3i6DMIW0X7ojiwoHax6egMOKGxj4G68Nz3-jCp4itjFWx-ktqfSmtcwqVx6sT/150fx150f", vis: 1},
-  upgrade2: {name: "Inventory Space", desc: "Inventory Space: +2", price: 45, cp: 0.00, kp: 0.00, is: 2, amount: 0, img: "https://steamcommunity-a.akamaihd.net/economy/image/U8721VM9p9C2v1o6cKJ4qEnGqnE7IoTQgZI-VTdwyTBeimAcIoxXpgK8bPeslY9pPJIvB5IWW2-452kaM8heLSRgleGAr7BMx-94b6MohOf-Xwsn7-USVDXgHhOG1zPDeLmsxwRtYpItIUb2wskZ6I0FWp9DdsKkOtQslw/100fx100f", vis: 1},
-  upgrade3: {name: "Inventory Space II", desc: "Inventory Space: +5", price: 75, cp: 0.00, kp: 0.00, is: 5, amount: 0, img: "https://steamcommunity-a.akamaihd.net/economy/image/U8721VM9p9C2v1o6cKJ4qEnGqnE7IoTQgZI-VTdwyTBeimAcIoxXpgK8bPeslY9pPJIvB5IWW2-452kaM8heLSRgleGAr7BMx-94b6MohOf-Xwsn7-USVDXgHhOG1zPDeLmsxwRtYpItIUb2wskZ6I0FWp9DdsKkOtQslw/100fx100f", vis: 1}
+  upgrade1: {name: "Beginner Package", desc: "2¢ off keys and cases. Oh, and one more inventory Spot.", price: 25, cp: 0.02, kp: 0.02, is: 1, img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXU5A1PIYQNqhpOSV-fRPasw8rsRVx4MwFo5_T3eAQ3i6DMIW0X7ojiwoHax6egMOKGxj4G68Nz3-jCp4itjFWx-ktqfSmtcwqVx6sT/150fx150f"},
+  upgrade2: {name: "Inventory Space", desc: "Inventory Space: +2", price: 45, cp: 0.00, kp: 0.00, is: 2, img: "https://steamcommunity-a.akamaihd.net/economy/image/U8721VM9p9C2v1o6cKJ4qEnGqnE7IoTQgZI-VTdwyTBeimAcIoxXpgK8bPeslY9pPJIvB5IWW2-452kaM8heLSRgleGAr7BMx-94b6MohOf-Xwsn7-USVDXgHhOG1zPDeLmsxwRtYpItIUb2wskZ6I0FWp9DdsKkOtQslw/100fx100f"},
+  upgrade3: {name: "Inventory Space II", desc: "Inventory Space: +5", price: 75, cp: 0.00, kp: 0.00, is: 5, img: "https://steamcommunity-a.akamaihd.net/economy/image/U8721VM9p9C2v1o6cKJ4qEnGqnE7IoTQgZI-VTdwyTBeimAcIoxXpgK8bPeslY9pPJIvB5IWW2-452kaM8heLSRgleGAr7BMx-94b6MohOf-Xwsn7-USVDXgHhOG1zPDeLmsxwRtYpItIUb2wskZ6I0FWp9DdsKkOtQslw/100fx100f"},
+  upgrade4: {name: "Inventory Space II", desc: "Inventory Space: +5", price: 75, cp: 0.00, kp: 0.00, is: 5, img: "https://steamcommunity-a.akamaihd.net/economy/image/U8721VM9p9C2v1o6cKJ4qEnGqnE7IoTQgZI-VTdwyTBeimAcIoxXpgK8bPeslY9pPJIvB5IWW2-452kaM8heLSRgleGAr7BMx-94b6MohOf-Xwsn7-USVDXgHhOG1zPDeLmsxwRtYpItIUb2wskZ6I0FWp9DdsKkOtQslw/100fx100f"}
 };
 
+var upgradesPurchased = [];
+
 function drawUpgrades() {
-  for (var upgrade in upgrades) {
-    if (upgrades.hasOwnProperty(upgrade)) {
-    $(".upgradeContainer").append('<div class="upgrade" id="' + upgrade + '"> <div class="upgradePicture"> <img src="' + upgrades[upgrade]["img"] + '" id="upgradePicture"></div> <div class="upgradeInfo"> <div class="upgradeName">' + upgrades[upgrade]["name"] + '</div> <div class="upgradeDesc">' + upgrades[upgrade]["desc"] + '</div> <div class="upgradePrice">' + "$" + upgrades[upgrade]["price"] + '</div> </div> </div>');
+  if (upgradesPurchased.length) {
+    //console.log("full");
+    for (var upgrade in upgrades) {
+      if (upgrades.hasOwnProperty(upgrade)) {
+        //console.log(upgrade);
+        if (upgradesPurchased.indexOf(upgrade) < 0) {
+          $(".upgradeContainer").append('<div class="upgrade" id="' + upgrade + '"> <div class="upgradePicture"> <img src="' + upgrades[upgrade]["img"] + '" id="upgradePicture"></div> <div class="upgradeInfo"> <div class="upgradeName">' + upgrades[upgrade]["name"] + '</div> <div class="upgradeDesc">' + upgrades[upgrade]["desc"] + '</div> <div class="upgradePrice">' + "$" + upgrades[upgrade]["price"] + '</div> </div> </div>');
+        } else {
+          buyUpgrade(upgrade);
+        }
+      }
+    }
+  } else {
+    //console.log("empty");
+    for (var upgrade in upgrades) {
+      if (upgrades.hasOwnProperty(upgrade)) {
+        $(".upgradeContainer").append('<div class="upgrade" id="' + upgrade + '"> <div class="upgradePicture"> <img src="' + upgrades[upgrade]["img"] + '" id="upgradePicture"></div> <div class="upgradeInfo"> <div class="upgradeName">' + upgrades[upgrade]["name"] + '</div> <div class="upgradeDesc">' + upgrades[upgrade]["desc"] + '</div> <div class="upgradePrice">' + "$" + upgrades[upgrade]["price"] + '</div> </div> </div>');
+      }
     }
   }
+
 }
 
 
 function buyUpgrade(id) {
-  var thisId = id;
-  var name = upgrades[id]["name"];
-  var desc = upgrades[id]["desc"];
-  var price = upgrades[id]["price"];
   var cp = upgrades[id]["cp"];
   var kp = upgrades[id]["kp"];
   var is = upgrades[id]["is"];
-  var amount = upgrades[id]["amount"];
-  var vis = upgrades[id]["vis"]
 
-  if (money >= price) {
-    money -= price;
-    keyDiscount += kp;
-    caseDiscount += cp;
-    inventoryMax += is;
-    amount += 1;
-    visibility = 0;
-    $(thisId).remove();
-    //console.log(id);
-  }
+  keyDiscount += kp;
+  caseDiscount += cp;
+  inventoryMax += is;
+  console.log(id);
+
   caseInfo();
 }
 
@@ -575,24 +621,49 @@ setTimeout(function() {
   }, 5000);
 }, 1500);
 
+setInterval(function() {
+  saveGameState();
+}, 30000);
+
 /*===============COOKIES===============*/
 function saveGameState() {
   var string = {
     "money": money,
-    "inventoryMax": inventoryMax,
     "inventory": inventory,
-
+    "itemCounter": itemCounter,
+    "currentCase": currentCase,
+    "upgradesPurchased": upgradesPurchased
 
   };
-  console.log(string);
+
+  localStorage.setItem("savegame", JSON.stringify(string));
+  console.log("Game Saved.");
 }
 
 function loadGameState() {
+  if (localStorage.getItem("savegame") !== null) {
+    inventoryClear();
+    var saveGame = JSON.parse(localStorage.getItem("savegame"));
+    //console.log(saveGame);
+
+    money = saveGame["money"];
+    inventory = saveGame["inventory"];
+    inventoryCurrent = Object.keys(inventory).length;
+    itemCounter = saveGame["itemCounter"];
+    currentCase = saveGame["currentCase"];
+    upgradesPurchased = saveGame["upgradesPurchased"];
+
+    drawInventory();
+    console.log("Game Save found. Successfully loaded.");
+  } else {
+    console.log("No save game detected.")
+  }
 
 }
 
 function clearGameState() {
-
+  localStorage.removeItem("savegame");
+  console.log("Game save deleted!");
 }
 
 /*===============CANVAS===============*/
@@ -680,6 +751,7 @@ drawOrder();
 */
 
 function init() {
+  loadGameState();
   caseInfo();
   backgroundCheck();
   drawCases()

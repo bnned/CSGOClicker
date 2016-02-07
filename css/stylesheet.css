@@ -668,6 +668,27 @@ html, body {
   transition: .3s ease-in-out;
 }
 
+.clearGameState {
+	font-size: 17px;
+	font-family: 'Rajdhani', sans-serif;
+	text-align: center;
+	line-height: 40px;
+	color: #fff;
+	margin: 50px 0px 25px 20px;
+	width: 150px;
+	height: 40px;
+	background: linear-gradient(#1d7751, #0e382c);
+	border: 2px #25793b solid;
+	border-radius: 5px;
+	text-shadow: 0 0 10px rgba(255,255,255,0.3);
+	transition: .1s;
+	transform: scale(1);
+	cursor: pointer;
+	-webkit-user-select: none;
+	box-shadow: 0 0 25px rgba(0,117,9,0.5);
+	overflow: hidden;
+}
+
 
 ::-webkit-scrollbar {
 	width: 17px;
