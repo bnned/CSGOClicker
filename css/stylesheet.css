@@ -91,7 +91,6 @@ html, body {
 	width: 70%;
 	height: 100%;
 	left: 0;
-	top: 0;
 	overflow: hidden;
 }
 
@@ -100,6 +99,16 @@ html, body {
   height: 100%;
   width: 100%;
 	background: #1E2C36;
+}
+
+.unboxing {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	opacity: 1;
 }
 
 .backgroundImage {
@@ -136,18 +145,6 @@ html, body {
 	padding-top: 0px;
 }
 
-/*
-.caseInfoContainer {
-	position: absolute;
-	right: 0;
-	left: 0;
-	bottom: 25vh;
-	text-align: center;
-	width: 450px;
-	margin: 50px auto;
-}
-*/
-
 .caseInfoContainer {
 	position: absolute;
 	right: 0;
@@ -156,8 +153,6 @@ html, body {
 	text-align: center;
 	width: 450px;
 }
-
-
 
 .caseName {
 	font-size: 22px;
@@ -176,6 +171,205 @@ html, body {
 
 .keyPrice {
 	display: inline-block;
+}
+
+.jackpot {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	opacity: 1;
+	background: #111715;
+	/*background: linear-gradient(rgba(0, 40, 1, 0.6),rgba(0, 40, 1, 0.6)), url("../images/sunburst.png");
+	background-position: center;
+	animation: infRotate 25s linear infinite;*/
+}
+
+.jackpotTopContainer {
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 395px;
+	width: 100%;
+}
+
+.jackpotTop {
+	height: 100px;
+	width: 100%;
+	background: #101619;
+	border-bottom: 1px #186144 solid;
+}
+
+.jackpotCountDown {
+	text-align: center;
+	line-height: 50px;
+	color: #fff;
+	font-size: 35px;
+}
+
+.winnerIs {
+	text-align: center;
+	line-height: 50px;
+	color: #fff;
+	font-size: 35px;
+}
+
+.jackpotRightContainer {
+	display: none;
+	position: relative;
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+}
+
+.jackpotRightToBet {
+	width: 100%;
+	height: 40%;
+	background: #101619;
+	border-top: 1px #090D10 solid;
+	border-bottom: 1px #090D10 solid;
+}
+
+.jackpotRightPlayer {
+	width: 100%;
+	height: 40%;
+	background: #101619;
+	overflow-y: auto;
+}
+
+.inventorySwapItem {
+	position: relative;
+	width: 70px;
+	height: 70px;
+	border: 1px #1B2329 solid;
+	margin: 6.5px 0px 0px 6.5px;
+	float: left;
+	cursor: pointer;
+}
+
+.jackpotRightInfo {
+	position: relative;
+	width: 100%;
+	height: 20%;
+	background: #0D1113;
+	color: #fff;
+}
+
+.jackpotRightStartButton {
+	position: absolute;
+	right: 0;
+	top: 0;
+	text-align: center;
+	height: 125px;
+	width: 150px;
+	line-height: 125px;
+	background: #186144;
+	cursor: pointer;
+}
+
+.jackpotRightStartButton:hover {
+	background: #095839;
+}
+
+.jackpotRightSkins {
+	margin: 5px;
+	font-size: 25px;
+	float: left;
+	width: 300px;
+}
+
+.swappedItem {
+    position: relative;
+    width: 70px;
+    height: 70px;
+    border: 1px #1B2329 solid;
+    margin: 6.5px 0px 0px 6.5px;
+    float: left;
+    cursor: pointer;
+}
+
+.spanTag {
+	font-size: 20px;
+	color: #186144;
+}
+
+.jackpotRightValue {
+	margin: 5px;
+	font-size: 25px;
+	float: left;
+	width: 300px;
+}
+
+.jackpotBottomContainer {
+	position: absolute;
+	bottom: 0;
+	height: 395px;
+	width: 100%;
+	background: #186144;
+	border-top: 1px #186144 solid;
+}
+
+.depositorContainer {
+	display: block;
+	width: 100%;
+	height: 100%;
+	overflow-y: auto;
+}
+
+.jackpotDepositor {
+	height: 80px;
+	margin: 5px 5px 0px 5px;
+	background: #143A2B;
+	overflow: hidden;
+}
+
+.depositorInfo {
+	color: #101619;
+	font-size: 20px;
+	line-height: 80px;
+	height: 100%;
+	width: 100%;
+	font-family: 'Rajdhani', sans-serif;
+}
+
+.depositorProPic {
+	height: 64px;
+	width: 64px;
+	float: left;
+	margin: 8px;
+}
+
+.depositorName {
+	float: left;
+	width: 200px;
+}
+
+.depositorValue {
+	float: left;
+	margin-left: 150px;
+}
+
+.depositorSkinContainer {
+	height: 80px;
+	width: 800px;
+	float: right;
+}
+
+.depositorSkin {
+	position: relative;
+	width: 70px;
+	height: 70px;
+	border: 1px #1B2329 solid;
+	margin: 4px;
+	float: right;
+}
+
+.depositorSkin img {
+	height: 70px;
+	width: 70px;
 }
 
 .modalWindow {
@@ -242,8 +436,8 @@ html, body {
 
 .right {
 	position: absolute;
-	top: 50px;
 	right: 0;
+	top: 0;
 	bottom: 0;
 	width: 575px;
 	background: #090D10;
@@ -334,6 +528,7 @@ html, body {
 	position: absolute;
 	width: 100%;
 	bottom: 0;
+	border-top: 1px #186144 solid;
 }
 
 .container {
@@ -342,9 +537,12 @@ html, body {
 }
 
 .main {
-	overflow-x: hidden;
+	overflow: hidden;
 	top: 50px;
-	height: 100%;
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
 }
 
 .button:hover {
@@ -377,15 +575,12 @@ html, body {
 	text-align: center;
 	line-height: 50px;
 	border-bottom: 1px #090D10 solid;
+	cursor: pointer;
 }
 
 .tab.active {
 	background: #101619;
 	border-bottom: 1px #101619 solid;
-}
-
-#jackpotTab {
-	cursor: not-allowed;
 }
 
 .caseContainer {
@@ -474,31 +669,31 @@ html, body {
 	height: 100%;
 }
 
-.inventoryItem.consumer {
+div.consumer {
 	border: 1px #B0C3D9 solid;
 }
 
-.inventoryItem.industrial {
+div.industrial {
 	border: 1px #5E98D9 solid;
 }
 
-.inventoryItem.milspec {
+div.milspec {
 	border: 1px #4B69FF solid;
 }
 
-.inventoryItem.restricted {
+div.restricted {
 	border: 1px #8847FF solid;
 }
 
-.inventoryItem.classified {
+div.classified {
 	border: 1px #D32CE6 solid;
 }
 
-.inventoryItem.covert {
+div.covert {
 	border: 1px #EB4B4B solid;
 }
 
-.inventoryItem.knife {
+div.knife {
 	border: 1px #FFD700 solid;
 }
 

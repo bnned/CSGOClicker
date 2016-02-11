@@ -36,14 +36,46 @@
         <!-- <canvas id="canvas"></canvas> -->
         <div class="left">
           <div class="display">
-            <div class="backgroundImage"></div>
-            <div class="caseDisplay" id="case">
-              <img src="https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXU5A1PIYQNqhpOSV-fRPasw8rsUFJ5KBFZv668FFUuh6qZJmlD7tiyl4OIlaGhYuLTzjhVupJ12urH89ii3lHlqEdoMDr2I5jVLFFSv_J2Rg/240fx182f" id="caseDisplayImage" />
-              <div class="caseInfoContainer">
-                <div class="caseName" id="caseName"></div>
-                <div class="priceContainer">
-                  <div class="casePrice" id="casePrice"></div>
-                  <div class="keyPrice" id="keyPrice"></div>
+            <div class="jackpot">
+              <div class="jackpotTopContainer">
+                <div class="jackpotTop">
+                  <div class="jackpotCountDown">0:00</div>
+                  <div class="winnerIs"></div>
+                </div>
+              </div>
+              <div class="jackpotBottomContainer">
+                  <div class="depositorMainInfo">
+
+                  </div>
+                  <div class="depositorContainer">
+                    <!--
+                    <div class="jackpotDepositor">
+                      <div class="depositorInfo">
+                        <img src="http://i.imgur.com/BzuCWzL.png" class="depositorProPic" id="">
+                        <div class="depositorName">Platinum (diff7)</div>
+                        <div class="depositorValue">$942.65</div>
+                        <div class="depositorSkinContainer">
+                          <div class="depositorSkin">
+                            <div class="itemPrice">$5.50</div>
+                            <img src="">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  -->
+                  </div>
+              </div>
+            </div>
+            <div class="unboxing">
+              <div class="backgroundImage"></div>
+              <div class="caseDisplay" id="case">
+                <img src="https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXU5A1PIYQNqhpOSV-fRPasw8rsUFJ5KBFZv668FFUuh6qZJmlD7tiyl4OIlaGhYuLTzjhVupJ12urH89ii3lHlqEdoMDr2I5jVLFFSv_J2Rg/240fx182f" id="caseDisplayImage" />
+                <div class="caseInfoContainer">
+                  <div class="caseName" id="caseName"></div>
+                  <div class="priceContainer">
+                    <div class="casePrice" id="casePrice"></div>
+                    <div class="keyPrice" id="keyPrice"></div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -91,6 +123,15 @@
                 </div>
               </div>
             -->
+            </div>
+            <div class="jackpotRightContainer">
+              <div class="jackpotRightPlayer"></div>
+              <div class="jackpotRightToBet"></div>
+              <div class="jackpotRightInfo">
+                <div class="jackpotRightValue"><span class="spanTag">Value: </span><span class="jackpotRightValueTotal">$0.00</span></div>
+                <div class="jackpotRightSkins"><span class="spanTag">Skins: </span><span class="jackpotRightSkinsTotal">0/6</span></div>
+                <div class="jackpotRightStartButton">Enter Jackpot</div>
+              </div>
             </div>
           </div>
           <div class="tradeButtonContainer">
