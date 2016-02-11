@@ -464,8 +464,9 @@ $("#caseTab").click(function() {
     $(".jackpotRightContainer").hide();
     $(".inventoryContainer").hide();
     $(".caseContainer").show();
-    if ($(".unboxing").css('display') == 'none') {
+    if ($(".unboxing").css('display') !== 'block') {
       $(".unboxing").show();
+      $(".jackpot").hide();
     }
   }
 });
@@ -480,8 +481,9 @@ $("#inventoryTab").click(function() {
     $(".jackpotRightContainer").hide();
     $(".inventoryContainer").show();
     $(".caseContainer").hide();
-    if ($(".unboxing").css('display') == 'none') {
+    if ($(".unboxing").css('display') !== 'block') {
       $(".unboxing").show();
+      $(".jackpot").hide();
     }
   }
 });
@@ -496,8 +498,9 @@ $("#upgradeTab").click(function() {
     $(".jackpotRightContainer").hide();
     $(".inventoryContainer").hide();
     $(".caseContainer").hide();
-    if ($(".unboxing").css('display') == 'none') {
+    if ($(".unboxing").css('display') !== 'block') {
       $(".unboxing").show();
+      $(".jackpot").hide();
     }
   }
 });
@@ -683,6 +686,7 @@ $(".jackpotRightToBet").on("click", ".swappedItem", function() {
 $(".jackpotRightStartButton").click(function() {
   if (Object.keys(jackpotInventory).length <= maxSwapSkins && swapSkins > 0) {
     $(".depositorContainer").html("");
+    inventoryCurrent -= Object.keys(jackpotInventory).length;
     jackpotStart();
   }
 });
@@ -890,8 +894,8 @@ function jackpotStart() {
       clearInterval(jackpotTimer);
     }
 
-    console.log(jackpotTimerCounter);
-    console.log("Skins:" + skins);
+    //console.log(jackpotTimerCounter);
+    //console.log("Skins:" + skins);
   }, 1000);
 
   function jackpotAISkinDraw() {
@@ -1021,6 +1025,7 @@ function jackpotStart() {
     if (randTicket <= playerTickets && randTicket > 0) {
       $(".winnerIs").html("You Win!");
       console.log("You Win!!!!!");
+      inventoryCurrent += Object.keys(pot).length;
       $.extend(inventory, pot);
 
     } else {
@@ -1042,8 +1047,9 @@ function jackpotStart() {
     inventoryReDraw();
     updateSwapInfo();
     $(".jackpotCountDown").html("0:00");
-    console.log(botTickets);
-    console.log(pot);
+    //console.log(botTickets);
+    //console.log(pot);
+    saveGameState();
   }
 }
 

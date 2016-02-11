@@ -111,6 +111,10 @@ html, body {
 	opacity: 1;
 }
 
+.tooltipAnchor {
+	z-index: 20;
+}
+
 .backgroundImage {
 	height: 100%;
 	width: 100%;
@@ -558,7 +562,6 @@ html, body {
 }
 
 .tabContainer {
-  margin-top: 39px;
   float: left;
 	width: 100%;
 	height: 40px;
@@ -628,8 +631,17 @@ html, body {
 .mainInfo {
 	overflow: hidden;
 	margin-top: 10px;
-	text-align: center;
 	color: #fff;
+	height: 115px;
+}
+
+.mainInfoLabel {
+
+}
+
+.mainInfoLabel span {
+	font-size: 35px;
+  margin-top: 10px;
 }
 
 .money {
