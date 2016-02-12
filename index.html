@@ -40,8 +40,21 @@
             <div class="jackpot">
               <div class="jackpotTopContainer">
                 <div class="jackpotTop">
-                  <div class="jackpotCountDown">00</div>
-                  <div class="winnerIs"></div>
+                  <!--
+                  <div class="canvasContainer">
+        						<canvas id="canvasCircle" width="450" height="450"></canvas>
+        					</div>
+                -->
+                  <div class="jackpotStats">
+                    <div class="jackpotCountDownLabel">Time Left</div>
+                    <div class="jackpotCountDown">00</div>
+                    <div class="winnerIs"></div>
+                    <div class="depositorLabel">
+                      <div class="depositorNameLabel">Name</div>
+                      <div class="depositorPriceLabel">Price</div>
+                      <div class="depositorItemsLabel">Items</div>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="jackpotBottomContainer">
@@ -84,9 +97,8 @@
         </div>
         <div class="right">
           <div class="mainInfo">
-            <div class="mainInfoLabel">Wallet: <span class="money" id="money"></span></div>
-            <div class="mainInfoLabel">Inventory Space: <span class="inventorySpace" id="inventorySpace"></span></div>
-            <div class="mainInfoLabel"> <span class="money" id="money"></span></div>
+            <div class="mainInfoLabel wallet">Wallet: <span class="money" id="money"></span></div>
+            <div class="mainInfoLabel inv">Inventory Space: <span class="inventorySpace" id="inventorySpace"></span></div>
           </div>
           <div class="tabContainer">
             <div class="tab active" id="inventoryTab">Inventory</div>
@@ -127,7 +139,9 @@
             -->
             </div>
             <div class="jackpotRightContainer">
+              <div class="jackpotRightInventoryTag">Inventory</div>
               <div class="jackpotRightPlayer"></div>
+              <div class="jackpotRightSTBTag">Skins to bet:</div>
               <div class="jackpotRightToBet"></div>
               <div class="jackpotRightInfo">
                 <div class="jackpotRightValue"><span class="spanTag">Value: </span><span class="jackpotRightValueTotal">$0.00</span></div>

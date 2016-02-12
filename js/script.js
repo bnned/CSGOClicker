@@ -647,7 +647,7 @@ $(".caseContainer").on('click', '.case', function() {
 /*===============JACKPOT===============*/
 var jackpotUnlocked = true;
 var swapSkins = 0;
-var maxSwapSkins = 6;
+var maxSwapSkins = 7;
 var swapSkinsValue = 0;
 var jackpotSelectedInventory = {};
 
@@ -687,7 +687,9 @@ $(".jackpotRightStartButton").click(function() {
   if (Object.keys(jackpotInventory).length <= maxSwapSkins && swapSkins > 0) {
     $(".depositorContainer").html("");
     inventoryCurrent -= Object.keys(jackpotInventory).length;
+
     jackpotStart();
+    inventoryReDraw();
   }
 });
 
@@ -720,7 +722,12 @@ function drawSwappedItem(name, price, img, id) {
 }
 
 function drawSwapInventory() {
+  jackpotInventory = {};
+  $(".jackpotRightToBet").html("");
   $(".jackpotRightPlayer").html("");
+  swapSkinsValue = 0;
+  swapSkins = 0;
+  updateSwapInfo();
   // I know this is cancer dont hate please
   var keys = Object.keys(inventory);
 
@@ -747,18 +754,18 @@ function updateSwapInfo() {
 
 //{name: "", difficulty: 1, profilePic: ""},
 var jackpotAI = {
-  bot1: ["jGal | CaseClicker.com (diff1)", 1, "http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/e8/e8223f8e92870322f6100154d32098769bbcea46_medium.jpg"],
+  bot1: ["jGal | CaseClicker.com (diff1)", 1, "http://i.imgur.com/WTjn0MM.png"],
   bot2: ["diff2", 2, "http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/db/db165c0b3816930a3a15a5141aa79e096413987e_medium.jpg"],
   bot3: ["diff3", 3, "http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/4f/4fc3c7352bec0f8a27b243738092f31c8248713c_medium.jpg"],
   bot4: ["diff4", 4, "http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/4a/4aefa6617bfbef16bd13a9a3bb7ca62bf2544d11_medium.jpg"],
   bot5: ["diff5", 5, "http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/d9/d9c62d9327e7f2a06d3db00295c99f839180d8a7_medium.jpg"],
   bot6: ["diff6", 6, "http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/37/3782e8773ba4931601b972f3288aa0f0c9909030_medium.jpg"],
   //bot7: ["Platinum (diff7)", 7, "http://i.imgur.com/BzuCWzL.png"],
-  //bot8: ["Loaf God (diff8)", 8, "http://i.imgur.com/Iu2Vkgl.png"],
+  bot8: ["Loaf God (diff8)", 8, "http://i.imgur.com/Iu2Vkgl.png"],
   //bot9: ["diff9", 9, "http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/c1/c160d49f7a842f408051bbada040b7d154bbcaf5_medium.jpg"]
 };
 
-
+//different version of difficulty
 var jackpotAiDifficulty1 = {
   1: {freq: 0.20, milspec: 0.950, restricted: 0.975, classified: 0.998, covert: 0.999},
   2: {freq: 0.30, milspec: 0.750, restricted: 0.900, classified: 0.998, covert: 0.999},
@@ -783,25 +790,7 @@ var jackpotAiDifficulty2 = {
   8: ["covert", "knife"],
   9: ["knife"]
 };
-/*
-function drawJPInventory() {
-  // I know this is cancer dont hate please
-  var keys = Object.keys(inventory);
 
-  for (var i = 0; i < keys.length; i++) {
-    var rarity = atob(inventory[keys[i]]).replace(/\[[^\[]*$/g, "").match(/\[[^\[]*$/g).toString().match(/\b\w*\b/)[0];
-    if (rarity === "regular") {
-      rarity = "knife";
-    }
-    var item = eval(atob(inventory[keys[i]]));
-    var name = item["name"];
-    var price = "$" + item["price"].toFixed(2);
-    var img = item["img"] + "/70fx70f";
-
-    $(".jpPlayerItemsContainer").append('<div class="jpPlayerItem ' + rarity + '" id="'+ keys[i] +'"><div class="itemPrice">' + price + '</div> <img src=' + img + '> </div>');
-  }
-}
-*/
 function inventoryReDraw() {
   $(".jackpotRightPlayer").html("");
   $(".inventoryContainer").html("");
@@ -840,10 +829,10 @@ function jackpotStart() {
       if (inventory.hasOwnProperty(skin)) {
         var item = eval(atob(jackpotInventory[skin]));
         playerTickets += item.price * 100;
-        console.log(skin);
+        //console.log(skin);
         pot[skin] = jackpotInventory[skin];
         skins += 1;
-        console.log(skins);
+        //console.log(skins);
         delete inventory[skin];
       } else {
         //delete jackpotInventory[skin];
@@ -855,8 +844,8 @@ function jackpotStart() {
   totalTickets += playerTickets;
 
   function drawPlayerDepositor(playerName, playerValue, playerImg) {
-    $(".depositorContainer").append('<div class="jackpotDepositor"> <div class="depositorInfo"><img src="' + playerImg + '" class="depositorProPic"> <div class="depositorName">' + playerName + '</div> <div class="depositorValue" id="depositValue">$'+ playerValue +'</div> <div class="depositorSkinContainer" id="playerDeposit"> </div> </div> </div>');
-
+    $(".depositorContainer").append('<div class="jackpotDepositor" id="playerDepositor"> <div class="depositorInfo"><img src="' + playerImg + '" class="depositorProPic"> <div class="depositorName">' + playerName + '</div> <div class="depositorValue" id="depositValue">$'+ playerValue +'</div> <div class="depositorSkinContainer" id="playerDeposit"> </div> </div> </div>');
+    $("#playerDepositor").hide().fadeIn();
     var keys = Object.keys(pot);
 
     for (var i = 0; i < keys.length; i++) {
@@ -874,10 +863,6 @@ function jackpotStart() {
 
   }
   drawPlayerDepositor("Player1 (You)", (playerTickets / 100).toFixed(2), "http://i.imgur.com/ICK2lr1.jpg");
-
-  console.log(playerTickets);
-  console.log(totalTickets);
-  console.log(pot);
 
   var jackpotTimer = setInterval(function() {
     $(".jackpotCountDown").html(jackpotTimerCounter);
@@ -913,6 +898,7 @@ function jackpotStart() {
     }
 
     function jackpotRandSkin() {
+      var jackpotCase = "";
       var skinsArray = [];
       var randSkin = "";
       var randNum = Math.random().toFixed(3); //rounded to 3 places to make it slightly easier to get certain rarities
@@ -938,6 +924,8 @@ function jackpotStart() {
 
 
       function skinChoose() {
+        jackpotCase = Object.keys(cases)[Math.floor(Object.keys(cases).length * Math.random())];
+
         var rarity = jackpotAiDifficulty2[botDiff][Math.floor(jackpotAiDifficulty2[botDiff].length * Math.random())];
 
         if (rarity === "knife") {
@@ -960,14 +948,14 @@ function jackpotStart() {
           drawBotItem(itemDisp(identifier.name, identifier.price, identifier.img), rarity);
         } else {
 
-          skinsArray = Object.keys(cases[currentCase][rarity]);
+          skinsArray = Object.keys(cases[jackpotCase][rarity]);
           randSkin = skinsArray[Math.floor(skinsArray.length * Math.random())];
-          identifier = cases[currentCase][rarity][randSkin];
+          identifier = cases[jackpotCase][rarity][randSkin];
 
           botTickets[randomBot] += Math.round(identifier.price * 100);
           totalTickets += Math.round(identifier.price * 100);
 
-          var toEncode = "cases['" + currentCase + "']" + "['" + rarity + "']" + "['" + randSkin + "']";
+          var toEncode = "cases['" + jackpotCase + "']" + "['" + rarity + "']" + "['" + randSkin + "']";
           //console.log(toEncode);
           pot["item" + itemCounter] = window.btoa(toEncode);
           //console.log(cases[currentCase][rarity][randSkin]);
@@ -996,7 +984,8 @@ function jackpotStart() {
         var depositorProPic = botImg;
         var depositorName = botName;
 
-        $(".depositorContainer").append('<div class="jackpotDepositor"> <div class="depositorInfo"><img src="' + depositorProPic + '" class="depositorProPic"> <div class="depositorName">' + depositorName + '</div> <div class="depositorValue" id="depositValue'+ depositTicker + '"></div> <div class="depositorSkinContainer" id="deposit' + depositTicker + '"> </div> </div> </div>');
+        $(".depositorContainer").append('<div class="jackpotDepositor" id="jackpotDepositor' + randomBot + '"> <div class="depositorInfo"><img src="' + depositorProPic + '" class="depositorProPic"> <div class="depositorName">' + depositorName + '</div> <div class="depositorValue" id="depositValue'+ depositTicker + '"></div> <div class="depositorSkinContainer" id="deposit' + depositTicker + '"> </div> </div> </div>');
+        $("#jackpotDepositor" + randomBot).hide().fadeIn();
       }
       drawDepositor(botName, botDrawPrice, botImg);
 
@@ -1024,7 +1013,7 @@ function jackpotStart() {
 
     if (randTicket <= playerTickets && randTicket > 0) {
       $(".winnerIs").html("You Win!");
-      console.log("You Win!!!!!");
+      console.log("You Win!");
       inventoryCurrent += Object.keys(pot).length;
       $.extend(inventory, pot);
 
@@ -1033,8 +1022,7 @@ function jackpotStart() {
       for (var i = 0; i < players.length; i++) {
         var botTicketsOwned = botTickets[players[i]];
         if (randTicket <= (botTicketsOwned + ticketAdder) && randTicket > ticketAdder) {
-          $(".winnerIs").html("Winner is: " + players[i]);
-          console.log(players[i] + " is the winner!");
+          $(".winnerIs").html("Winner is: " + jackpotAI[players[i]][0]);
           itemCounter -= jackpotItemCounter;
           break;
         } else {
@@ -1051,8 +1039,9 @@ function jackpotStart() {
     //console.log(pot);
     saveGameState();
   }
-}
 
+
+}
 
 /*===============VISUAL===============*/
 
@@ -1126,6 +1115,13 @@ function clearGameState() {
 }
 
 /*===============CANVAS===============*/
+
+
+/*==============================================================================
+Canvas
+==============================================================================*/
+
+
 
 /*
 // "+1" popups
