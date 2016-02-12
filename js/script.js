@@ -880,7 +880,7 @@ function jackpotStart() {
   console.log(pot);
 
   var jackpotTimer = setInterval(function() {
-    $(".jackpotCountDown").html("0:" + jackpotTimerCounter);
+    $(".jackpotCountDown").html(jackpotTimerCounter);
     if (jackpotTimerCounter > 0) {
       if (skins < maxSkins) {
         jackpotAISkinDraw();
@@ -1046,7 +1046,7 @@ function jackpotStart() {
     swapSkins = 0;
     inventoryReDraw();
     updateSwapInfo();
-    $(".jackpotCountDown").html("0:00");
+    $(".jackpotCountDown").html("00");
     //console.log(botTickets);
     //console.log(pot);
     saveGameState();
