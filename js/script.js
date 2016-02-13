@@ -5,6 +5,7 @@ var fps = 15;
 
 var money = 7.50;
 var currentCase = "case2";
+var acceptMoneyPerClick = 0.1;
 
 
 
@@ -20,7 +21,7 @@ var popup = true;
 var inventory = {};
 var jackpotInventory = {};
 
-var inventoryMax = 250;
+var inventoryMax = 25;
 var inventoryCurrent = 0;
 
 var keyPrice = 2.50;
@@ -162,13 +163,6 @@ var cases = {
         price: 48.69,
         img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot621FAZt7P_BdjVW4tW4k7-KgOfLP7LWnn9u5MRjjeyPptuj2Qzt_0JsYDymJNDAIQ8-MA7U_1i3w-bphpO1v56bmHBk7yMksWGdwUJq4NI0lg"
       }
-    },
-    knife: {
-      weap1: {
-        name: "★ Gut Knife | Safari Mesh",
-        price: 63.37,
-        img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf1ObcTi5S09Gzh4i0g_b6DLbUkmJE5fp9i_vG8MLx2QSy_BdpZmmlcoWVdQdvYV2G-1bvw-zv18O96MzByCA27nYrtyqPgVXp1t9T3ex9"
-      }
     }
   },
   case2: {
@@ -243,13 +237,6 @@ var cases = {
         name: "AUG | Chameleon",
         price: 2.24,
         img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot6-iFAR17PLddgJB5N27kYyOmPn1OqnUqWdY781lteXA54vwxlWw-hduNW_xcIeRegc3YlmE8gS8wrvv1MS86s-dzSdk6yYj5HzYyRKpwUYb8NvXBjQ"
-      }
-    },
-    knife: {
-      weap1: {
-        name: "★ Gut Knife | Safari Mesh",
-        price: 63.37,
-        img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf1ObcTi5S09Gzh4i0g_b6DLbUkmJE5fp9i_vG8MLx2QSy_BdpZmmlcoWVdQdvYV2G-1bvw-zv18O96MzByCA27nYrtyqPgVXp1t9T3ex9"
       }
     }
   }
@@ -386,7 +373,7 @@ function drawItem(array, rarity) {
     var price = "$" + array[1].toFixed(2);
     var img = array[2] + "/70fx70f";
 
-    $(".inventoryContainer").append('<div class="inventoryItem ' + rarity + '" id="'+ 'item' + itemCounter +'"><div class="itemPrice">' + price + '</div> <img src=' + img + '> </div>');
+    $(".inventoryContainer").append('<div class="inventoryItem ' + rarity + '" id="'+ 'item' + itemCounter +'" title="' + name + '"><div class="itemPrice">' + price + '</div> <img src=' + img + '> </div>');
 }
 
 function inventoryClear() {
@@ -408,7 +395,7 @@ function drawInventory() {
     var price = "$" + item["price"].toFixed(2);
     var img = item["img"] + "/70fx70f";
 
-    $(".inventoryContainer").append('<div class="inventoryItem ' + rarity + '" id="'+ keys[i] +'"><div class="itemPrice">' + price + '</div> <img src=' + img + '> </div>');
+    $(".inventoryContainer").append('<div class="inventoryItem ' + rarity + '" id="'+ keys[i] +'" title="' + name + '"><div class="itemPrice">' + price + '</div> <img src=' + img + '> </div>');
   }
 }
 
@@ -419,6 +406,7 @@ function drawInventory() {
 
 $(".inventoryContainer").on("click", ".inventoryItem", function() {
   if (inventory[this.id]) {
+    $(".tooltipAnchor").hide();
     var item = eval(atob(inventory[this.id]));
     //console.log(item);
     inventoryCurrent -= 1;
@@ -449,7 +437,7 @@ $("#unboxButton").click(function() {
 });
 
 $("#acceptButton").click(function() {
-  money += 0.15;
+  money += acceptMoneyPerClick;
 });
 
 /*===============TABS===============*/
@@ -464,6 +452,8 @@ $("#caseTab").click(function() {
     $(".jackpotRightContainer").hide();
     $(".inventoryContainer").hide();
     $(".caseContainer").show();
+    $(".rightMain").css("bottom","135px");
+    $(".tradeButtonContainer").show();
     if ($(".unboxing").css('display') !== 'block') {
       $(".unboxing").show();
       $(".jackpot").hide();
@@ -481,6 +471,8 @@ $("#inventoryTab").click(function() {
     $(".jackpotRightContainer").hide();
     $(".inventoryContainer").show();
     $(".caseContainer").hide();
+    $(".rightMain").css("bottom","135px");
+    $(".tradeButtonContainer").show();
     if ($(".unboxing").css('display') !== 'block') {
       $(".unboxing").show();
       $(".jackpot").hide();
@@ -498,6 +490,8 @@ $("#upgradeTab").click(function() {
     $(".jackpotRightContainer").hide();
     $(".inventoryContainer").hide();
     $(".caseContainer").hide();
+    $(".rightMain").css("bottom","135px");
+    $(".tradeButtonContainer").show();
     if ($(".unboxing").css('display') !== 'block') {
       $(".unboxing").show();
       $(".jackpot").hide();
@@ -517,7 +511,8 @@ $("#jackpotTab").click(function() {
       $(".jackpotRightContainer").show();
       $(".inventoryContainer").hide();
       $(".caseContainer").hide();
-
+      $(".tradeButtonContainer").hide();
+      $(".rightMain").css("bottom","0");
       if ($(".unboxing").css('display') == 'block') {
         $(".unboxing").hide();
         $(".jackpot").show();
@@ -562,70 +557,65 @@ function modalDraw(name, img) {
 }
 
 /*===============UPGRADES===============*/
+function upgradeMultiplier(basePrice, amount) {
+  var newPrice = basePrice * Math.pow(1.05, amount + 1).toFixed(2);
+  console.log(newPrice);
+  return newPrice;
+}
 
 $(".upgradeContainer").on("click", ".upgrade", function() {
   var name = upgrades[this.id]["name"];
   var desc = upgrades[this.id]["desc"];
-  var price = upgrades[this.id]["price"];
-  var cp = upgrades[this.id]["cp"];
-  var kp = upgrades[this.id]["kp"];
-  var is = upgrades[this.id]["is"];
 
-  if (money >= price) {
-    money -= price;
-    keyDiscount += kp;
-    caseDiscount += cp;
-    inventoryMax += is;
-    upgradesPurchased.push(this.id);
-    $(this).remove();
+  if (money >= upgrades[this.id]["price"]) {
+    money -= upgrades[this.id]["price"];
+    upgrades[this.id]["price"] = upgradeMultiplier(upgrades[this.id]["basePrice"], upgradesPurchased[this.id]);
+    //console.log(upgradeMultiplier(upgrades[this.id]["basePrice"], upgradesPurchased[this.id]));
+    keyDiscount += upgrades[this.id]["kp"];
+    caseDiscount += upgrades[this.id]["cp"];
+    inventoryMax += upgrades[this.id]["is"];
+    upgradesPurchased[this.id] += 1;
   }
   caseInfo();
+  $("#" + this.id).find(".upgradePrice").html("$" + upgrades[this.id]["price"].toFixed(2));
+  $("#" + this.id).find(".upgradeAmount").html(upgradesPurchased[this.id]);
 });
 
 
 var upgrades = {
-  upgrade1: {name: "Beginner Package", desc: "2¢ off keys and cases. Oh, and one more inventory Spot.", price: 25, cp: 0.02, kp: 0.02, is: 1, img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXU5A1PIYQNqhpOSV-fRPasw8rsRVx4MwFo5_T3eAQ3i6DMIW0X7ojiwoHax6egMOKGxj4G68Nz3-jCp4itjFWx-ktqfSmtcwqVx6sT/150fx150f"},
-  upgrade2: {name: "Inventory Space", desc: "Inventory Space: +2", price: 45, cp: 0.00, kp: 0.00, is: 2, img: "https://steamcommunity-a.akamaihd.net/economy/image/U8721VM9p9C2v1o6cKJ4qEnGqnE7IoTQgZI-VTdwyTBeimAcIoxXpgK8bPeslY9pPJIvB5IWW2-452kaM8heLSRgleGAr7BMx-94b6MohOf-Xwsn7-USVDXgHhOG1zPDeLmsxwRtYpItIUb2wskZ6I0FWp9DdsKkOtQslw/100fx100f"},
-  upgrade3: {name: "Inventory Space II", desc: "Inventory Space: +5", price: 75, cp: 0.00, kp: 0.00, is: 5, img: "https://steamcommunity-a.akamaihd.net/economy/image/U8721VM9p9C2v1o6cKJ4qEnGqnE7IoTQgZI-VTdwyTBeimAcIoxXpgK8bPeslY9pPJIvB5IWW2-452kaM8heLSRgleGAr7BMx-94b6MohOf-Xwsn7-USVDXgHhOG1zPDeLmsxwRtYpItIUb2wskZ6I0FWp9DdsKkOtQslw/100fx100f"},
-  upgrade4: {name: "Inventory Space II", desc: "Inventory Space: +5", price: 75, cp: 0.00, kp: 0.00, is: 5, img: "https://steamcommunity-a.akamaihd.net/economy/image/U8721VM9p9C2v1o6cKJ4qEnGqnE7IoTQgZI-VTdwyTBeimAcIoxXpgK8bPeslY9pPJIvB5IWW2-452kaM8heLSRgleGAr7BMx-94b6MohOf-Xwsn7-USVDXgHhOG1zPDeLmsxwRtYpItIUb2wskZ6I0FWp9DdsKkOtQslw/100fx100f"}
+  upgrade1: {name: "Inventory Space", desc: "+1 to your max inventory space.", basePrice: 15, price: 15, cp: 0.00, kp: 0.00, is: 1, img: "https://steamcommunity-a.akamaihd.net/economy/image/U8721VM9p9C2v1o6cKJ4qEnGqnE7IoTQgZI-VTdwyTBeimAcIoxXpgK8bPeslY9pPJIvB5IWW2-452kaM8heLSRgleGAr7BMx-94b6MohOf-Xwsn7-USVDXgHhOG1zPDeLmsxwRtYpItIUb2wskZ6I0FWp9DdsKkOtQslw/100fx100f"},
+  //upgrade2: {name: "Inventory Space", desc: "Inventory Space: +2", price: 45, cp: 0.00, kp: 0.00, is: 2, img: "https://steamcommunity-a.akamaihd.net/economy/image/U8721VM9p9C2v1o6cKJ4qEnGqnE7IoTQgZI-VTdwyTBeimAcIoxXpgK8bPeslY9pPJIvB5IWW2-452kaM8heLSRgleGAr7BMx-94b6MohOf-Xwsn7-USVDXgHhOG1zPDeLmsxwRtYpItIUb2wskZ6I0FWp9DdsKkOtQslw/100fx100f"},
+  //upgrade3: {name: "Inventory Space II", desc: "Inventory Space: +5", price: 75, cp: 0.00, kp: 0.00, is: 5, img: "https://steamcommunity-a.akamaihd.net/economy/image/U8721VM9p9C2v1o6cKJ4qEnGqnE7IoTQgZI-VTdwyTBeimAcIoxXpgK8bPeslY9pPJIvB5IWW2-452kaM8heLSRgleGAr7BMx-94b6MohOf-Xwsn7-USVDXgHhOG1zPDeLmsxwRtYpItIUb2wskZ6I0FWp9DdsKkOtQslw/100fx100f"},
+  //upgrade4: {name: "Inventory Space II", desc: "Inventory Space: +5", price: 75, cp: 0.00, kp: 0.00, is: 5, img: "https://steamcommunity-a.akamaihd.net/economy/image/U8721VM9p9C2v1o6cKJ4qEnGqnE7IoTQgZI-VTdwyTBeimAcIoxXpgK8bPeslY9pPJIvB5IWW2-452kaM8heLSRgleGAr7BMx-94b6MohOf-Xwsn7-USVDXgHhOG1zPDeLmsxwRtYpItIUb2wskZ6I0FWp9DdsKkOtQslw/100fx100f"}
 };
 
-var upgradesPurchased = [];
+var upgradesPurchased = {
+  upgrade1: 0
+};
 
 function drawUpgrades() {
-  if (upgradesPurchased.length) {
-    //console.log("full");
-    for (var upgrade in upgrades) {
-      if (upgrades.hasOwnProperty(upgrade)) {
-        //console.log(upgrade);
-        if (upgradesPurchased.indexOf(upgrade) < 0) {
-          $(".upgradeContainer").append('<div class="upgrade" id="' + upgrade + '"> <div class="upgradePicture"> <img src="' + upgrades[upgrade]["img"] + '" id="upgradePicture"></div> <div class="upgradeInfo"> <div class="upgradeName">' + upgrades[upgrade]["name"] + '</div> <div class="upgradeDesc">' + upgrades[upgrade]["desc"] + '</div> <div class="upgradePrice">' + "$" + upgrades[upgrade]["price"] + '</div> </div> </div>');
-        } else {
+  for (var upgrade in upgrades) {
+    if (upgrades.hasOwnProperty(upgrade)) {
+      //console.log(upgrade);
+      if (upgradesPurchased[upgrade] > 0) {
+        var upgradeTicker = upgradesPurchased[upgrade];
+        for (var i = 0; i < upgradeTicker; i++) {
           buyUpgrade(upgrade);
         }
+        $(upgrade).find(".upgradePrice").html("$" + upgrades[upgrade]["price"].toFixed(2));
+        $(upgrade).find(".upgradeAmount").html(upgrades[upgrade]);
       }
-    }
-  } else {
-    //console.log("empty");
-    for (var upgrade in upgrades) {
-      if (upgrades.hasOwnProperty(upgrade)) {
-        $(".upgradeContainer").append('<div class="upgrade" id="' + upgrade + '"> <div class="upgradePicture"> <img src="' + upgrades[upgrade]["img"] + '" id="upgradePicture"></div> <div class="upgradeInfo"> <div class="upgradeName">' + upgrades[upgrade]["name"] + '</div> <div class="upgradeDesc">' + upgrades[upgrade]["desc"] + '</div> <div class="upgradePrice">' + "$" + upgrades[upgrade]["price"] + '</div> </div> </div>');
-      }
+      $(".upgradeContainer").append('<div class="upgrade" id="' + upgrade + '"> <div class="upgradePicture"> <img src="' + upgrades[upgrade]["img"] + '" id="upgradePicture"></div> <div class="upgradeInfo"> <div class="upgradeName">' + upgrades[upgrade]["name"] + '</div> <div class="upgradeDesc">' + upgrades[upgrade]["desc"] + '</div> <div class="upgradePriceLabel">Price: <span class="upgradePrice">' + "$" + upgrades[upgrade]["price"].toFixed(2) + '</span> </div> <div class="upgradeAmountLabel">Amount: <span class="upgradeAmount">'+ upgradesPurchased[upgrade] + '</span> </div> </div> </div>');
     }
   }
-
 }
 
 
 function buyUpgrade(id) {
-  var cp = upgrades[id]["cp"];
-  var kp = upgrades[id]["kp"];
-  var is = upgrades[id]["is"];
-
-  keyDiscount += kp;
-  caseDiscount += cp;
-  inventoryMax += is;
-
+  upgrades[id]["price"] = upgradeMultiplier(upgrades[id]["basePrice"], upgradesPurchased[id]);
+  keyDiscount += upgrades[id]["kp"];
+  caseDiscount += upgrades[id]["cp"];
+  inventoryMax += upgrades[id]["is"];
   caseInfo();
 }
 
@@ -646,13 +636,14 @@ $(".caseContainer").on('click', '.case', function() {
 
 /*===============JACKPOT===============*/
 var jackpotUnlocked = true;
+var jackpotInProgress = false;
 var swapSkins = 0;
 var maxSwapSkins = 7;
 var swapSkinsValue = 0;
 var jackpotSelectedInventory = {};
 
 $(".jackpotRightPlayer").on("click", ".inventorySwapItem", function() {
-  if (Object.keys(jackpotInventory).length < maxSwapSkins) {
+  if (Object.keys(jackpotInventory).length < maxSwapSkins && jackpotInProgress == false) {
     if (inventory[this.id]) {
       var item = eval(atob(inventory[this.id]));
       //console.log(item);
@@ -684,7 +675,7 @@ $(".jackpotRightToBet").on("click", ".swappedItem", function() {
 });
 
 $(".jackpotRightStartButton").click(function() {
-  if (Object.keys(jackpotInventory).length <= maxSwapSkins && swapSkins > 0) {
+  if (Object.keys(jackpotInventory).length <= maxSwapSkins && swapSkins > 0 && jackpotInProgress == false) {
     $(".depositorContainer").html("");
     inventoryCurrent -= Object.keys(jackpotInventory).length;
 
@@ -704,7 +695,7 @@ function drawJackpotSwapItem(name, price, img, id) {
       var price = "$" + price.toFixed(2);
       var img = img + "/70fx70f";
 
-      $(".jackpotRightPlayer").append('<div class="inventorySwapItem ' + rarity + '" id="' + id +'"><div class="itemPrice">' + price + '</div> <img src=' + img + '> </div>');
+      $(".jackpotRightPlayer").append('<div class="inventorySwapItem ' + rarity + '" id="' + id +'" title="' + name + '"><div class="itemPrice">' + price + '</div> <img src=' + img + '> </div>');
 }
 
 function drawSwappedItem(name, price, img, id) {
@@ -718,7 +709,7 @@ function drawSwappedItem(name, price, img, id) {
       var price = "$" + price.toFixed(2);
       var img = img + "/70fx70f";
 
-      $(".jackpotRightToBet").append('<div class="swappedItem ' + rarity + '" id="' + id +'"><div class="itemPrice">' + price + '</div> <img src=' + img + '> </div>');
+      $(".jackpotRightToBet").append('<div class="swappedItem ' + rarity + '" id="' + id +'" title="' + name + '"><div class="itemPrice">' + price + '</div> <img src=' + img + '> </div>');
 }
 
 function drawSwapInventory() {
@@ -741,7 +732,7 @@ function drawSwapInventory() {
     var price = "$" + item["price"].toFixed(2);
     var img = item["img"] + "/70fx70f";
 
-    $(".jackpotRightPlayer").append('<div class="inventorySwapItem ' + rarity + '" id="'+ keys[i] +'"><div class="itemPrice">' + price + '</div> <img src=' + img + '> </div>');
+    $(".jackpotRightPlayer").append('<div class="inventorySwapItem ' + rarity + '" id="'+ keys[i] +'" title="' + name + '"><div class="itemPrice">' + price + '</div> <img src=' + img + '> </div>');
   }
 }
 
@@ -760,8 +751,8 @@ var jackpotAI = {
   bot4: ["diff4", 4, "http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/4a/4aefa6617bfbef16bd13a9a3bb7ca62bf2544d11_medium.jpg"],
   bot5: ["diff5", 5, "http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/d9/d9c62d9327e7f2a06d3db00295c99f839180d8a7_medium.jpg"],
   bot6: ["diff6", 6, "http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/37/3782e8773ba4931601b972f3288aa0f0c9909030_medium.jpg"],
-  //bot7: ["Platinum (diff7)", 7, "http://i.imgur.com/BzuCWzL.png"],
-  bot8: ["Loaf God (diff8)", 8, "http://i.imgur.com/Iu2Vkgl.png"],
+  bot7: ["Platinum (diff7)", 7, "http://i.imgur.com/BzuCWzL.png"],
+  //bot8: ["Loaf God (diff8)", 8, "http://i.imgur.com/Iu2Vkgl.png"],
   //bot9: ["diff9", 9, "http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/c1/c160d49f7a842f408051bbada040b7d154bbcaf5_medium.jpg"]
 };
 
@@ -802,6 +793,7 @@ function inventoryReDraw() {
 function jackpotStart() {
   $(".jackpotRightToBet").html("");
   $(".winnerIs").html("");
+  jackpotInProgress = true;
   var skins = 0;
   var maxSkins = 60;
   var pot = {};
@@ -858,14 +850,16 @@ function jackpotStart() {
       var price = item["price"].toFixed(2);
       var img = item["img"] + "/70fx70f";
 
-      $("#playerDeposit").append('<div class="depositorSkin ' + rarity + '" id="'+ keys[i] +'"><div class="itemPrice">$' + price + '</div> <img src=' + img + '> </div>');
+      $("#playerDeposit").append('<div class="depositorSkin ' + rarity + '" id="'+ keys[i] +'" title="' + name + '"><div class="itemPrice">$' + price + '</div> <img src=' + img + '> </div>');
     }
 
   }
+  $(".jackpotCountDown").html(jackpotTimerCounter);
   drawPlayerDepositor("Player1 (You)", (playerTickets / 100).toFixed(2), "http://i.imgur.com/ICK2lr1.jpg");
+  $(".jackpotCurrentWorth").html("Pot: $" + totalTickets / 100);
+  $(".jackpotPercentOfTickets").html("Your odds to win: " + (playerTickets / totalTickets * 100).toFixed(2) + "%");
 
   var jackpotTimer = setInterval(function() {
-    $(".jackpotCountDown").html(jackpotTimerCounter);
     if (jackpotTimerCounter > 0) {
       if (skins < maxSkins) {
         jackpotAISkinDraw();
@@ -878,9 +872,11 @@ function jackpotStart() {
       jackpotPickWinner();
       clearInterval(jackpotTimer);
     }
-
     //console.log(jackpotTimerCounter);
     //console.log("Skins:" + skins);
+    $(".jackpotCurrentWorth").html("Pot: $" + totalTickets / 100);
+    $(".jackpotPercentOfTickets").html("Your odds to win: " + (playerTickets / totalTickets * 100).toFixed(2) + "%");
+    $(".jackpotCountDown").html(jackpotTimerCounter);
   }, 1000);
 
   function jackpotAISkinDraw() {
@@ -975,7 +971,7 @@ function jackpotStart() {
           var rarity = rarity;
           var botSelector = "deposit" + depositTicker;
 
-          $('#' + botSelector).append('<div class="depositorSkin ' + rarity + '"><div class="itemPrice">' + price + '</div> <img src=' + img + '> </div>');
+          $('#' + botSelector).append('<div class="depositorSkin ' + rarity + '" title="' + name + '"><div class="itemPrice">' + price + '</div> <img src=' + img + '> </div>');
           //console.log(randomBot);
       }
 
@@ -1037,6 +1033,7 @@ function jackpotStart() {
     $(".jackpotCountDown").html("00");
     //console.log(botTickets);
     //console.log(pot);
+    jackpotInProgress = false;
     saveGameState();
   }
 
@@ -1052,9 +1049,21 @@ function backgroundCheck() {
 $(window).on('resize', function(){
     backgroundCheck();
 });
+/*
+$(".inventoryContainer").on({mouseenter: function() {
+  var item = eval(atob(inventory[this.id]));
+  var name = item["name"];
+  $(".tooltipAnchor").html(this.title);
+  $(".tooltipAnchor").show();
+  $(".tooltipAnchor").stop().animate({opacity:1}, 400);
+}, mouseleave: function() {
+  $(".tooltipAnchor").css("opacity", 0);
+  $(".tooltipAnchor").hide();
+}}, ".inventoryItem").mousemove(function() {
+    $(".tooltipAnchor").css({top: event.clientY - 125, left: event.clientX - 100});
+});
+*/
 
-var test = {hey: 0};
-var arrayTest = ["gay", "fart"];
 /*===============TICKERS===============*/
 
 setInterval(function() {
@@ -1072,7 +1081,7 @@ setInterval(function() {
   saveGameState();
 }, 30000);
 
-/*===============COOKIES===============*/
+/*===============SAVEGAME===============*/
 function saveGameState() {
   var string = {
     "money": money,
@@ -1080,7 +1089,6 @@ function saveGameState() {
     "itemCounter": itemCounter,
     "currentCase": currentCase,
     "upgradesPurchased": upgradesPurchased
-
   };
 
   localStorage.setItem("savegame", JSON.stringify(string));
@@ -1099,7 +1107,6 @@ function loadGameState() {
     itemCounter = saveGame["itemCounter"];
     currentCase = saveGame["currentCase"];
     upgradesPurchased = saveGame["upgradesPurchased"];
-
     drawInventory();
     console.log("Game Save found. Successfully loaded.");
   } else {
@@ -1209,7 +1216,7 @@ function init() {
   loadGameState();
   caseInfo();
   backgroundCheck();
-  drawCases()
-  drawUpgrades()
+  drawCases();
+  drawUpgrades();
 }
 init();
