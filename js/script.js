@@ -452,6 +452,8 @@ $("#caseTab").click(function() {
     $(".jackpotRightContainer").hide();
     $(".inventoryContainer").hide();
     $(".caseContainer").show();
+    $(".rightMain").css("bottom","135px");
+    $(".tradeButtonContainer").show();
     if ($(".unboxing").css('display') !== 'block') {
       $(".unboxing").show();
       $(".jackpot").hide();
@@ -469,6 +471,8 @@ $("#inventoryTab").click(function() {
     $(".jackpotRightContainer").hide();
     $(".inventoryContainer").show();
     $(".caseContainer").hide();
+    $(".rightMain").css("bottom","135px");
+    $(".tradeButtonContainer").show();
     if ($(".unboxing").css('display') !== 'block') {
       $(".unboxing").show();
       $(".jackpot").hide();
@@ -486,6 +490,8 @@ $("#upgradeTab").click(function() {
     $(".jackpotRightContainer").hide();
     $(".inventoryContainer").hide();
     $(".caseContainer").hide();
+    $(".rightMain").css("bottom","135px");
+    $(".tradeButtonContainer").show();
     if ($(".unboxing").css('display') !== 'block') {
       $(".unboxing").show();
       $(".jackpot").hide();
@@ -505,7 +511,8 @@ $("#jackpotTab").click(function() {
       $(".jackpotRightContainer").show();
       $(".inventoryContainer").hide();
       $(".caseContainer").hide();
-
+      $(".tradeButtonContainer").hide();
+      $(".rightMain").css("bottom","0");
       if ($(".unboxing").css('display') == 'block') {
         $(".unboxing").hide();
         $(".jackpot").show();
@@ -744,7 +751,7 @@ var jackpotAI = {
   bot4: ["diff4", 4, "http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/4a/4aefa6617bfbef16bd13a9a3bb7ca62bf2544d11_medium.jpg"],
   bot5: ["diff5", 5, "http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/d9/d9c62d9327e7f2a06d3db00295c99f839180d8a7_medium.jpg"],
   bot6: ["diff6", 6, "http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/37/3782e8773ba4931601b972f3288aa0f0c9909030_medium.jpg"],
-  //bot7: ["Platinum (diff7)", 7, "http://i.imgur.com/BzuCWzL.png"],
+  bot7: ["Platinum (diff7)", 7, "http://i.imgur.com/BzuCWzL.png"],
   //bot8: ["Loaf God (diff8)", 8, "http://i.imgur.com/Iu2Vkgl.png"],
   //bot9: ["diff9", 9, "http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/c1/c160d49f7a842f408051bbada040b7d154bbcaf5_medium.jpg"]
 };
