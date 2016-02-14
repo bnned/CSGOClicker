@@ -491,6 +491,7 @@ html, body {
 }
 
 .depositorInfo {
+	position: relative;
 	color: #FFFFFF;
 	font-size: 20px;
 	line-height: 80px;
@@ -504,6 +505,7 @@ html, body {
 	width: 64px;
 	float: left;
 	margin: 8px;
+	outline: 1px #25793B solid;
 }
 
 .depositorName {
@@ -518,7 +520,6 @@ html, body {
 
 .depositorSkinContainer {
 	height: 80px;
-	width: 800px;
 	float: right;
 }
 
@@ -1107,6 +1108,23 @@ div.knife {
     -ms-user-select: none;
     user-select: none;
 }
+
+/*===============MEDIA QUERIES=================*/
+@media only screen and (max-width: 1660px) {
+	.depositorSkinContainer {
+		left: 0;
+    bottom: 0;
+    position: absolute;
+    height: 80px;
+		background: rgba(10,10,10,.8);
+		width: 100%;
+	}
+	.jackpotDepositor {
+		height: 160px;
+	}
+
+}
+
 
 /*===============KEYFRAMES=================*/
 
