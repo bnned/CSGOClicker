@@ -51,6 +51,7 @@ html, body {
   height: 100%;
 	width: 100%;
   font-family: "Open Sans";
+	touch-action: manipulation;
 	cursor: default;
 }
 
@@ -959,7 +960,7 @@ div.knife {
 }
 
 .settingsList.hidden {
-	top: -200px;
+	top: -155px;
 }
 
 #canvas {
@@ -1119,8 +1120,61 @@ div.knife {
 		background: rgba(10,10,10,.8);
 		width: 100%;
 	}
+
 	.jackpotDepositor {
 		height: 160px;
+	}
+
+	.modalMain {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+    height: 300px;
+    width: 500px;
+    background: #101619;
+    border: 1px #186144 solid;
+	}
+
+	.unboxButton {
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 15px;
+    font-size: 20px;
+    font-family: 'Rajdhani', sans-serif;
+    text-align: center;
+    line-height: 40px;
+    color: #fff;
+    margin: 0 auto;
+    width: 150px;
+    height: 40px;
+    background: linear-gradient(#1d7751, #0e382c);
+    border: 2px #25793b solid;
+    border-radius: 5px;
+    text-shadow: 0 0 10px rgba(255,255,255,0.3);
+    transition: .1s;
+    transform: scale(1);
+    cursor: pointer;
+    -webkit-user-select: none;
+    box-shadow: 0 0 25px rgba(0,117,9,0.5);
+    overflow: hidden;
+	}
+
+	.modalMain img {
+    display: block;
+    height: 200px;
+    width: 200px;
+    margin: 0 auto;
+	}
+
+	.jackpotStats {
+    height: 125px;
+    position: absolute;
+    right: 0;
+    left: 0;
 	}
 
 }
