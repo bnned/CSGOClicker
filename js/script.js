@@ -21,7 +21,7 @@ var popup = true;
 var inventory = {};
 var jackpotInventory = {};
 
-var inventoryMax = 100;
+var inventoryMax = 50;
 var inventoryCurrent = 0;
 
 var keyPrice = 2.50;
@@ -31,7 +31,8 @@ var keyDiscount = 0;
 
 var operationCases = {
   case1: {name: "Weapon Case 1", price: 5.00, img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXU5A1PIYQNqhpOSV-fRPasw8rsRVx4MwFo5_T3eAQ3i6DMIW0X7ojiwoHax6egMOKGxj4G68Nz3-jCp4itjFWx-ktqfSmtcwqVx6sT"},
-  case2: {name: "Operation Phoenix Case", price: 0.06, img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXU5A1PIYQNqhpOSV-fRPasw8rsUFJ5KBFZv668FFUuh6qZJmlD7tiyl4OIlaGhYuLTzjhVupJ12urH89ii3lHlqEdoMDr2I5jVLFFSv_J2Rg"}
+  case2: {name: "Operation Phoenix Case", price: 0.06, img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXU5A1PIYQNqhpOSV-fRPasw8rsUFJ5KBFZv668FFUuh6qZJmlD7tiyl4OIlaGhYuLTzjhVupJ12urH89ii3lHlqEdoMDr2I5jVLFFSv_J2Rg"},
+  case3: {name: "Winter Offensive Case", price: 1.32, img: "http://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXU5A1PIYQNqhpOSV-fRPasw8rsUFJ5KBFZv668FFYu0aKfJz8a793gxNLfzvOkMunUwWgH7JIjj-qW8d7x2VXt_UBuMT3zIpjVLFEGDSGUSQ"}
 }
 
 var knives = {
@@ -239,6 +240,81 @@ var cases = {
         img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot6-iFAR17PLddgJB5N27kYyOmPn1OqnUqWdY781lteXA54vwxlWw-hduNW_xcIeRegc3YlmE8gS8wrvv1MS86s-dzSdk6yYj5HzYyRKpwUYb8NvXBjQ"
       }
     }
+  },
+  case3: {
+    milspec: {
+      weap1: {
+        name: "PP-Bizon | Cobalt Halftone",
+        price: 0.17,
+        img: "http://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpotLO_JAlf0v73ZShQ_dO_h4W0n_b4Na_emG5u5Mx2gv3--Y3nj1H6rkBoNzr3dtfHcFA_NQnW_AO-xby7h8K_78ydm3diuSMrtirVnkOz1QYMMLJJTXlsBg"
+      },
+      weap2: {
+        name: "M249 | Magma",
+        price: 0.16,
+        img: "http://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpou-jxcjhhwszHcy5L6NW3mr-HnvD8J4Tdl3lW7Yty0uiSrY-s2wHgqEE6Z2zwJdCVegY8NAmB_ljtkL_mjZG07s-fwCc3pGB8stBeF8Zo"
+      },
+      weap3: {
+        name: "Five-SeveN | Kami",
+        price: 0.35,
+        img: "http://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgposLOzLhRlxfbGTjVb09e3mYm0m_7zO6_ummpD78A_ieyVrN-sjlHg-hFvYzr1JYKWJAI2ZlDX8wC7xrvr05Pqvp_OnHpiuz5iuyjNWRRyUA"
+      },
+      weap4: {
+        name: "Galil AR | Sandstorm",
+        price: 0.21,
+        img: "http://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgposbupIgthwczLZAJR7dKyh5SEhfrLPr7Vn35c18lwmO7Eu9qs0AXtrkI9ZWv3JdOVIVdvaQzV-1PvwbvvgMO_uMnLmiMwvnInt33D30vgH7ufOHU"
+      },
+    },
+    restricted: {
+      weap1: {
+        name: "Nova | Rising Skull",
+        price: 0.98,
+        img: "http://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpouLWzKjhjxszbeihO4OO4m5aKqPrxN7LEm1Rd6dd2j6eWo9zw2lC38kA9Z2z1ItKSIQVsaAvY-1C9ye25jcC7uMiby3dhuSkk-z-DyJ3pID1f"
+      },
+      weap2: {
+        name: "MP9 | Rose Iron",
+        price: 1.29,
+        img: "http://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpou6r8FAZt7OfAfi9M9eOkm5OOqPrkaoTdn2xZ_Pp9i_vG8ML02QzjrUJvZ2n3cdTEewBqNF7S-Ae6kufr0J65vJrBnyBisnQqsXiOgVXp1uZ7p0lz"
+      },
+      weap3: {
+        name: "Dual Berettas | Marina",
+        price: 1.17,
+        img: "http://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpos7asPwJf2-r3fDxQ5dK3q5OemeX9IL7ummJW4NFOhujT8om7ilewrUBtNWyicoLEd1Q3Mw2G-APswbrqhpW6u5zMmHEyuiQi4i3UnQv330-xiJ-Mhw"
+      },
+      weap3: {
+        name: "FAMAS | Pulse",
+        price: 1.24,
+        img: "http://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgposLuoKhRf0Ob3dzxP7c-JhJWHhPLLP7LWnn9u5MRjjeyP843x3VCyqBdrMWmgd9DAdAM7Ml-D-Vi-wrrvjJe9uJ3AyXZqvyl3tmGdwUKbfF5qgg"
+      }
+    },
+    classified: {
+      weap1: {
+        name: "AWP | Redline",
+        price: 9.82,
+        img: "http://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot621FAR17PLfYQJB496klb-GkvP9JrbummpD78A_3LGXrI-i31fm_Uc5MW_3I4LDelc2YQmF-FPtl7_uh8PtupTMn3pnvD5iuyj-_v0pRA"
+      },
+      weap2: {
+        name: "P250 | Mehndi",
+        price: 4.05,
+        img: "http://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpopujwezhjxszYI2gS086zkomFkvPLP7LWnn9u5MRjjeyPrIj02wy2qEZqYjv1IYGTdwM7M1nX-lHryLvuhcLo7s7My3tqvnMk4mGdwUL_7jJtRA"
+      },
+      weap3: {
+        name: "M4A1-S | Guardian",
+        price: 5.77,
+        img: "http://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpou-6kejhz2v_Nfz5H_uO1gb-Gw_alfqjuk2dU78R_ntbN_Iv9nGu4qgE7NnfyddXHIAY-Z1jW_lm-yO--1pO_vsmcz3ow7HQl53-PmETjiBBMa-Nrm7XAHnr9YjkW"
+      },
+    },
+    covert: {
+      weap1: {
+        name: "Sawed-Off | The Kraken",
+        price: 3.79,
+        img: "http://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpopbuyLgNv1fX3cih9_92hkYSEkfHLPLjFmXtE5dVOhuDG_ZjKhFWmrBZyZG_ycNCQewc_NA6D_AC3x-7phMW77p7NnHZi6yJ0s3mIzBO21B1EPPsv26Kzq1aSUw"
+      },
+      weap2: {
+        name: "M4A4 | Asiimov",
+        price: 31.22,
+        img: "http://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpou-6kejhjxszFJQJD_9W7m5a0mvLwOq7cqWdQ-sJ0xOvEpIj0jAbkqEE_ZD3xctLGJAE_Zw7U-QTowefth8TpvM_InHZh6XQ8pSGKWYJAoJI"
+      }
+    }
   }
 };
 
@@ -373,12 +449,12 @@ function drawItem(array, rarity) {
     var price = "$" + array[1].toFixed(2);
     var img = array[2] + "/70fx70f";
 
-    $(".inventoryContainer").append('<div class="inventoryItem ' + rarity + '" id="'+ 'item' + itemCounter +'" title="' + name + '"><div class="itemPrice">' + price + '</div> <img src=' + img + '> </div>');
+    $(".inventoryItemContainer").append('<div class="inventoryItem ' + rarity + '" id="'+ 'item' + itemCounter +'" title="' + name + '"><div class="itemPrice">' + price + '</div> <img src=' + img + '> </div>');
 }
 
 function inventoryClear() {
   inventory = {};
-  $('.inventoryContainer').html("");
+  $('.inventoryItemContainer').html("");
 }
 
 function drawInventory() {
@@ -395,7 +471,7 @@ function drawInventory() {
     var price = "$" + item["price"].toFixed(2);
     var img = item["img"] + "/70fx70f";
 
-    $(".inventoryContainer").append('<div class="inventoryItem ' + rarity + '" id="'+ keys[i] +'" title="' + name + '"><div class="itemPrice">' + price + '</div> <img src=' + img + '> </div>');
+    $(".inventoryItemContainer").append('<div class="inventoryItem ' + rarity + '" id="'+ keys[i] +'" title="' + name + '"><div class="itemPrice">' + price + '</div> <img src=' + img + '> </div>');
   }
 }
 
@@ -404,7 +480,7 @@ function drawInventory() {
 
 /*===============CLICKS===============*/
 
-$(".inventoryContainer").on("click", ".inventoryItem", function() {
+$(".inventoryItemContainer").on("click", ".inventoryItem", function() {
   if (inventory[this.id]) {
     $(".tooltipAnchor").hide();
     var item = eval(atob(inventory[this.id]));
@@ -414,6 +490,7 @@ $(".inventoryContainer").on("click", ".inventoryItem", function() {
     //console.log(item['price']);
     delete inventory[this.id];
     $(this).remove();
+    inventoryValue();
   }
 });
 
@@ -427,10 +504,19 @@ $("#case").click(function() {
     } else if (price < 0 && money >= price) {
       randSkin();
     }
+    inventoryValue();
   }
 });
 
+$(".jackpotDifficulty").click(function() {
+  if (!jackpotInProgress) {
+    $(".jackpotDifficultyContainer div").removeClass("active");
+    $(this).addClass("active");
 
+    jackpotDifficulty = this.id;
+
+  }
+});
 
 $("#unboxButton").click(function() {
   $('.modalWindow').toggle();
@@ -556,6 +642,15 @@ function modalDraw(name, img) {
   $("#modalSkinName").html(name);
 }
 
+function inventoryValue() {
+  var inventoryKeys = Object.keys(inventory);
+  var totalValue = 0;
+  for (var i = 0; i < inventoryKeys.length; i++) {
+    totalValue += eval(atob(inventory[inventoryKeys[i]]))["price"];
+  }
+  $(".inventoryValue").html("Value: $" + totalValue.toFixed(2));
+}
+
 /*===============UPGRADES===============*/
 function upgradeMultiplier(basePrice, amount) {
   var newPrice = basePrice * Math.pow(1.05, amount + 1).toFixed(2);
@@ -641,6 +736,7 @@ var swapSkins = 0;
 var maxSwapSkins = 7;
 var swapSkinsValue = 0;
 var jackpotSelectedInventory = {};
+var jackpotDifficulty = "low";
 
 $(".jackpotRightPlayer").on("click", ".inventorySwapItem", function() {
   if (Object.keys(jackpotInventory).length < maxSwapSkins && jackpotInProgress == false) {
@@ -662,7 +758,7 @@ $(".jackpotRightToBet").on("click", ".swappedItem", function() {
   if (inventoryCurrent <= inventoryMax) {
     if (jackpotInventory[this.id]) {
       var item = eval(atob(jackpotInventory[this.id]));
-      console.log(item);
+      //console.log(item);
       inventory[this.id] = jackpotInventory[this.id];
       drawJackpotSwapItem(item.name, item.price, item.img, this.id);
       swapSkins -= 1;
@@ -745,16 +841,33 @@ function updateSwapInfo() {
 
 //{name: "", difficulty: 1, profilePic: ""},
 var jackpotAI = {
-  bot1: ["jGal | CaseClicker.com (diff1)", 1, "http://i.imgur.com/WTjn0MM.png"],
-  bot2: ["diff2", 2, "http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/db/db165c0b3816930a3a15a5141aa79e096413987e_medium.jpg"],
-  bot3: ["diff3", 3, "http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/4f/4fc3c7352bec0f8a27b243738092f31c8248713c_medium.jpg"],
-  bot4: ["diff4", 4, "http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/4a/4aefa6617bfbef16bd13a9a3bb7ca62bf2544d11_medium.jpg"],
-  bot5: ["diff5", 5, "http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/d9/d9c62d9327e7f2a06d3db00295c99f839180d8a7_medium.jpg"],
-  bot6: ["diff6", 6, "http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/37/3782e8773ba4931601b972f3288aa0f0c9909030_medium.jpg"],
-  bot7: ["Platinum (diff7)", 7, "http://i.imgur.com/BzuCWzL.png"],
-  //bot8: ["Loaf God (diff8)", 8, "http://i.imgur.com/Iu2Vkgl.png"],
-  //bot9: ["diff9", 9, "http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/c1/c160d49f7a842f408051bbada040b7d154bbcaf5_medium.jpg"]
+  bot1: ["jGal | CaseClicker.com", 1, "http://i.imgur.com/WTjn0MM.png"],
+  bot2: ["exochase", 1, "http://i.imgur.com/za6Y17z.png"],
+  bot3: ["S5E3", 1, "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/62/62001ac6b067182b65f92fa07797c630af64bb4a_full.jpg"],
+  bot4: ["MR.BEATS", 2, "http://i.imgur.com/dIs0yE8.png"],
+  bot5: ["CockCrusher19", 2, "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/03/03b0621515c85e256c20a8f169737430fa57281d_full.jpg"],
+  bot6: ["Octane | n OU", 2, "http://i.imgur.com/P2hwwIE.png"],
+  bot7: ["Moon Cricket Butler", 3, "http://i.imgur.com/qNsPKRH.png"],
+  bot8: ["filsmick", 3, "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/c3/c31d18ad931fd685ca3af5700db6a461e10bcfe8_full.jpg"],
+  bot9: ["Nino Triste", 3, "http://i.imgur.com/n1iHk8a.png"],
+  bot10: ["Lucky", 4, "http://i.imgur.com/Dg7cI81.png"],
+  bot11: ["seif.", 4, "http://i.imgur.com/gcieULF.png"],
+  bot12: ["Plebeian", 5, "http://i.imgur.com/ZjMTocK.png"],
+  bot13: ["diff5", 5, "http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/d9/d9c62d9327e7f2a06d3db00295c99f839180d8a7_medium.jpg"],
+  bot14: ["banned", 6, "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/57/575daf48a20828cb6470193b7067d2782aa5ff0f_full.jpg"],
+  bot15: ["Roflzilla", 6, "http://i.imgur.com/prnsggZ.png"],
+  bot16: ["Jainxu", 7, "http://i.imgur.com/nwEsAGH.png"],
+  bot17: ["Platinum (diff7)", 7, "http://i.imgur.com/BzuCWzL.png"],
+  bot18: ["sp00ky gh0stman", 8, "http://i.imgur.com/ISxQyow.png"],
+  bot19: ["storM", 9, "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/e5/e51667b64e8591b8428b4fc268fc826f21a982cf_full.jpg"]
 };
+
+var jackpotPots = {
+  low: ["bot1", "bot2", "bot3", "bot4", "bot5", "bot6", "bot7", "bot8", "bot9"],
+  medium: ["bot7", "bot8", "bot9", "bot10", "bot11", "bot12", "bot13", "bot14"],
+  high: ["bot15", "bot16", "bot17", "bot18", "bot19"]
+}
+
 
 //different version of difficulty
 var jackpotAiDifficulty1 = {
@@ -784,10 +897,11 @@ var jackpotAiDifficulty2 = {
 
 function inventoryReDraw() {
   $(".jackpotRightPlayer").html("");
-  $(".inventoryContainer").html("");
+  $(".inventoryItemContainer").html("");
   $(".jackpotRightToBet").html("");
   drawInventory();
   drawSwapInventory();
+  inventoryValue();
 }
 
 function jackpotStart() {
@@ -807,14 +921,24 @@ function jackpotStart() {
     bot6: 0,
     bot7: 0,
     bot8: 0,
-    bot9: 0
+    bot9: 0,
+    bot10: 0,
+    bot11: 0,
+    bot12: 0,
+    bot13: 0,
+    bot14: 0,
+    bot15: 0,
+    bot16: 0,
+    bot17: 0,
+    bot18: 0,
+    bot19: 0
   };
   var playerTickets = 0;
   var totalTickets = 0;
   var jackpotItemCounter = 0;
   var jackpotTimerCounter = 10;
   var depositTicker = 0;
-  var AIKeys = Object.keys(jackpotAI);
+  var AIKeys = JSON.parse(JSON.stringify(jackpotPots[jackpotDifficulty]));
 
   for (var skin in jackpotInventory) {
     if (jackpotInventory.hasOwnProperty(skin)) {
@@ -992,7 +1116,7 @@ function jackpotStart() {
 
       var botDrawPrice = botTickets[randomBot] / 100;
       //console.log(depositValueVar);
-      $("#" + depositValueVar).html("$" + botDrawPrice);
+      $("#" + depositValueVar).html("$" + botDrawPrice.toFixed(2));
       depositTicker += 1;
 
       AIKeys.splice(AIKeys.indexOf(randomBot), 1);
@@ -1005,10 +1129,11 @@ function jackpotStart() {
     var randTicket = Math.round(Math.random() * totalTickets);
     console.log("Random Ticket: " + randTicket);
     console.log("Player Tickets: " + playerTickets);
-    console.log("Player Tickets: " + totalTickets);
+    console.log("Total Tickets: " + totalTickets);
 
     if (randTicket <= playerTickets && randTicket > 0) {
       $(".winnerIs").html("You Win!");
+      $("#playerDepositor").addClass("winner");
       console.log("You Win!");
       inventoryCurrent += Object.keys(pot).length;
       $.extend(inventory, pot);
@@ -1019,6 +1144,8 @@ function jackpotStart() {
         var botTicketsOwned = botTickets[players[i]];
         if (randTicket <= (botTicketsOwned + ticketAdder) && randTicket > ticketAdder) {
           $(".winnerIs").html("Winner is: " + jackpotAI[players[i]][0]);
+          $("#jackpotDepositor" + players[i]).addClass("winner");
+          console.log(players[i]);
           itemCounter -= jackpotItemCounter;
           break;
         } else {
@@ -1108,6 +1235,7 @@ function loadGameState() {
     currentCase = saveGame["currentCase"];
     upgradesPurchased = saveGame["upgradesPurchased"];
     drawInventory();
+    inventoryValue();
     console.log("Game Save found. Successfully loaded.");
   } else {
     console.log("No save game detected.")

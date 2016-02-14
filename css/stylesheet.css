@@ -217,13 +217,37 @@ html, body {
 	animation: infRotate 25s linear infinite;*/
 }
 
+.jackpotDifficultyContainer {
+	display: flex;
+	justify-content: space-around;
+	height: 30px;
+	width: 100%;
+}
+
+.jackpotDifficultyContainer div {
+	font-family: 'Rajdhani', sans-serif;
+  color: #273135;
+	line-height: 30px;
+	float: left;
+	width: 33.3%;
+	background: #090D10;
+	text-align: center;
+	border: 1px #186144 solid;
+	border-left: 1px transparent;
+	cursor: pointer;
+}
+
+.jackpotDifficultyContainer div.active {
+	background: #25793B;
+	color: #59BB32;
+}
+
 .jackpotStats {
 	height: 125px;
 	position: absolute;
 	right: 0;
 	left: 0;
-	top: 0;
-	background: #186144;
+	bottom: 75px;
 }
 
 .jackpotCurrentWorth {
@@ -263,6 +287,8 @@ html, body {
 	width: 100%;
 	background: #101619;
 	border-bottom: 1px #186144 solid;
+	background: linear-gradient(rgba(16, 22, 25, .5), rgba(16, 22, 25, 1)), url(http://i.imgur.com/vakyLA5.png);
+	background-size: cover;
 }
 
 .jackpotCountDown {
@@ -305,8 +331,9 @@ html, body {
 	bottom: 0;
 	height: 50px;
 	line-height: 50px;
-	background: #143A2B;
-	border-top: 1px #186144 solid;
+	color: #fff;
+	background: #0E0E0E;
+	border-top: 1px #272727 solid;
 }
 
 .jackpotRightContainer {
@@ -331,7 +358,7 @@ html, body {
 
 .jackpotRightPlayer {
 	position: absolute;
-  top: 20px;
+  top: 50px;
 	bottom: 185px;
 	width: 100%;
 	background: #101619;
@@ -339,15 +366,23 @@ html, body {
 	border-bottom: 1px #186144 solid;
 }
 
-.jackpotRightInventoryTag {
+.inventoryTagContainer {
 	font-family: 'Rajdhani', sans-serif;
 	color: #273135;
 	float: left;
 	height: 20px;
 	line-height: 24px;
-	padding-left: 7px;
 	width: 100%;
 	margin-top: 1px;
+}
+
+.inventoryTag {
+	margin-left: 7px;
+}
+
+.inventoryValue {
+	margin-right: 7px;
+	float: right;
 }
 
 .jackpotRightSTBTag {
@@ -433,8 +468,8 @@ html, body {
 	bottom: 0;
 	height: 395px;
 	width: 100%;
-	background: #186144;
-	border-top: 1px #186144 solid;
+	background: #151515;
+	border-top: 1px #25793B solid;
 }
 
 .depositorContainer {
@@ -447,12 +482,16 @@ html, body {
 .jackpotDepositor {
 	height: 80px;
 	margin: 5px 5px 0px 5px;
-	background: #143A2B;
+	background: #0E0E0E;
 	overflow: hidden;
 }
 
+.jackpotDepositor.winner {
+	background: #38340A;
+}
+
 .depositorInfo {
-	color: #101619;
+	color: #FFFFFF;
 	font-size: 20px;
 	line-height: 80px;
 	height: 100%;
@@ -587,6 +626,13 @@ html, body {
 }
 
 .inventoryContainer {
+	position: relative;
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+}
+
+.inventoryItemContainer {
 	display: block;
 	height: 100%;
 	width: 100%;
@@ -802,7 +848,7 @@ html, body {
 	bottom: 0;
 	height: 15px;
 	text-align: center;
-	background: #0C1013;
+	background: #080808;
 	width: 100%;
 	line-height: 15px;
 	color: #fff;
