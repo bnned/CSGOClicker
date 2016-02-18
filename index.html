@@ -3,20 +3,22 @@
   <head>
     <meta charset="utf-8">
     <title>CSGOClicker</title>
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <link href='https://fonts.googleapis.com/css?family=Rajdhani:600' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./css/stylesheet.css" media="screen" title="no title" charset="utf-8">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-
   </head>
   <body>
     <div class="container noselect">
       <div class="notification hidden" id="notif">Thanks for stopping by! The game is a WIP. Enjoy!</div>
       <div class="navbar">
         <ul>
-          <li class="headerLogo"><a href="#">CSGOClicker</a></li>
+          <li><a href="/" class="headerLogo"></a></li>
           <div class="settings"></div>
-          <li><a href="#">About</a></li>
+          <div class="about">About</div>
         </ul>
       </div>
       <div class="settingsList hidden">
@@ -24,13 +26,28 @@
         <li>Disable Popup: <input type="checkbox" id="popupCheckbox"></li>
         <div class="clearGameState">Clear Game Save</div>
       </div>
+      <div class="aboutContainer">
+        <div class="aboutInfo">
+          <div class="aboutHeader">Welcome to CSGOClicker.</div>
+          <div class="aboutBody">CSGOClicker is an incremental clicker game based around csgo and the jackpot/skin community. The goal is to open cases and get rich.</div>
+          <div class="aboutDevelopers">
+            <div class="aboutDev">
+              <div class="aboutDevName">banned</div>
+              <div class="aboutDevDesc">With CSGOClicker just being a thought, banned broght it to life as a learners project. Since version one, CSGOClicker has come a long way.</div>
+            </div>
+            <div class="aboutDev">
+              <div class="aboutDevName">roflzilla</div>
+              <div class="aboutDevDesc">Helping with logic and ideas, brandon assists in bringing the project to life.</div>
+            </div>
+          </div>
+          <div class="aboutLinks"></div>
+        </div>
+      </div>
+      <div class="tooltipAnchor"></div>
       <div class="main">
-        <div class="tooltipAnchor"></div>
         <div class="modalWindow">
           <div class="modalMain">
-            <img src="" id="modalImage"/>
-            <div class="modalSkinName" id="modalSkinName"></div>
-            <div class="unboxButton button" id="unboxButton">Continue</div>
+
           </div>
         </div>
         <canvas id="drawing"></canvas>
@@ -100,7 +117,7 @@
         <div class="right">
           <div class="mainInfo">
             <div class="mainInfoLabel wallet">Wallet: <span class="money" id="money"></span></div>
-            <div class="mainInfoLabel inv">Inventory Space: <span class="inventorySpace" id="inventorySpace"></span></div>
+            <div class="mainInfoLabel inv" id="invSpace">Inventory Space: <span class="inventorySpace" id="inventorySpace"></span> <div class="mainInfoLabelWarning tt" data-tt="Inventory over max capacity."><i class="fa fa-exclamation-triangle"></i></div></div>
           </div>
           <div class="tabContainer">
             <div class="tab active" id="inventoryTab">Inventory</div>
@@ -122,6 +139,15 @@
             -->
             </div>
             <div class="upgradeContainer">
+              <div class="stackingUpgradeContainer">
+
+              </div>
+              <div class="permUpgradeContainer">
+                <div class="permUpgrade" id="permUpgrade1"><i class="fa fa-cubes fa-2x"></i><span class="permUpgradeLabel" id="permUpgradeLabel1">..........</span></div>
+                <div class="permUpgrade locked" id="permUpgrade2"><i class="fa fa-exchange fa-2x"></i><span class="permUpgradeLabel" id="permUpgradeLabel2">..........</span></div>
+                <div class="permUpgrade locked" id="permUpgrade3"><i class="fa fa-cubes fa-2x"></i><span class="permUpgradeLabel" id="permUpgradeLabel3">..........</span></div>
+                <div class="permUpgrade locked" id="permUpgrade4"><i class="fa fa-cubes fa-2x"></i><span class="permUpgradeLabel" id="permUpgradeLabel4">..........</span></div>
+              </div>
               <!--
               <div class="upgrade cantAfford">
                 <div class="upgradePicture"></div>
