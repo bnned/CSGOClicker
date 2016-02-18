@@ -1606,6 +1606,7 @@ function loadGameState() {
     stackingUpgradesPurchased = saveGame["stackingUpgradesPurchased"];
     drawInventory();
     inventoryValue();
+    skinOverflow();
     console.log("Game Save found. Successfully loaded.");
   } else {
     console.log("No save game detected.")
@@ -1716,6 +1717,5 @@ function init() {
   backgroundCheck();
   drawCases();
   drawStackingUpgrades();
-  skinOverflow();
 }
 init();
