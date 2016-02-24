@@ -1313,7 +1313,7 @@ function jackpotStart() {
     }
     //console.log(jackpotTimerCounter);
     //console.log("Skins:" + skins);
-    $(".jackpotCurrentWorth").html("Pot: $" + totalTickets / 100);
+    $(".jackpotCurrentWorth").html("Pot: $" + (totalTickets / 100).toFixed(2));
     $(".jackpotPercentOfTickets").html("Your odds to win: " + (playerTickets / totalTickets * 100).toFixed(2) + "%");
     $(".jackpotCountDown").html(jackpotTimerCounter);
   }, 1000);
