@@ -1633,14 +1633,10 @@ Canvas
 // "+1" popups
 var canvas = document.getElementById("drawing");
 var ctx = canvas.getContext("2d");
-
 canvas.width = window.innerWidth - $('.right').width();
 canvas.height = window.innerHeight;
-
-
 var tt = [];
 function makeToolTip(element, ) {
-
 }
 */
 
@@ -1661,7 +1657,6 @@ $("#case").click(function() {
     if (alpha < 0) {
       canvas.width = canvas.width;
       clear(interval);
-
     }
     ctx.restore();
   }, 50);
@@ -1672,13 +1667,10 @@ $("#case").click(function() {
 /*
 var fps = 1000 / 60;
 var degrees = 0;
-
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
-
 canvas.width = window.innerWidth - $('.right').width();
 canvas.height = window.innerHeight;
-
 function drawBackground() {
   var image = new Image();
   image.onload = function() {
@@ -1688,14 +1680,12 @@ function drawBackground() {
     ctx.rotate(degrees * Math.PI / 180);
     ctx.drawImage(image, -image.width / 2, -image.height / 2);
     ctx.restore();
-
     degrees += 0.1;
     setTimeout(drawBackground, fps);
     //requestFrameAnimation(drawBackground);
   }
    image.src = "images/sunburst.png";
 }
-
 function drawCase() {
   var image = new Image();
   image.onload = function() {
@@ -1703,11 +1693,9 @@ function drawCase() {
   }
   image.src = "images/case.png";
 }
-
 function drawOrder() {
   drawBackground();
 }
-
 drawOrder();
 */
 

@@ -129,12 +129,14 @@ html, body {
 }
 
 .aboutDevName {
+	display: block;
 	font-family: 'Rajdhani', sans-serif;
 	font-size: 20px;
 	color: #186144;
 	width: 150px;
 	margin: 20px auto 5px;
 	border-bottom: 1px #1E2C36 solid;
+	text-decoration: none;
 }
 
 .aboutDevDesc {
@@ -782,7 +784,8 @@ html, body {
 	bottom: 0;
 	height: 125px;
 	border-top: 1px #186144 solid;
-	display: flex;
+	/*display: flex;*/
+	display: none;
 	justify-content: space-around;
 	background: #0F843F;
 }
