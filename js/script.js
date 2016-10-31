@@ -4,6 +4,14 @@ var Game = {
   'variables': {
     'currentCase': 1
     'rarity': {
+      'base': {
+        'bs': 0,
+        'ww': 0,
+        'ft': 0,
+        'mw': 0,
+        'fn': 0,
+        'stattrak': 0.3 // 30% chance
+      },
       'case': {
         'milspec': 1, // base chance
         'restricted': 0.15, // 15% chance
@@ -57,3 +65,11 @@ var Game = {
 }
 
 // LOGIC
+
+/* Random Skin Logic
+  - have to check if
+      - drop skin
+      - sticker
+      - souvenir package
+      - case skin
+      - operation skin
