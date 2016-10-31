@@ -8,8 +8,6 @@ var currentCase = "case2";
 var acceptMoneyPerClick = 0.1;
 
 
-
-
 /*=========================Inventory============================*/
 //In inventory: weap skins
 //Hidden: money
