@@ -1146,11 +1146,6 @@ div.knife {
 	transition: .5s;
 }
 
-.notification a {
-	text-decoration: none;
-	color: gold;
-}
-
 .settings {
 	float: right;
 	height: 49px;
