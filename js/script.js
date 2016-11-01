@@ -25,11 +25,19 @@ var Game = {
     ]},
     'rarity': {
       'base': {
-        'bs': 0,
-        'ww': 0,
-        'ft': 0,
-        'mw': 0,
-        'fn': 0,
+        // based on wear value, look up values later
+        /*
+        0.44 – 1.00 - Battle-Scarred does bs really have 60% chance?
+        0.37 – 0.44 - Well-Worn
+        0.15 – 0.37 - Field Tested
+        0.07 – 0.15 - Minimal Wear
+        0.00 – 0.07 - Factory New
+        */
+        'bs': 1,
+        'ww': 0.44,
+        'ft': 0.37,
+        'mw': 0.15,
+        'fn': 0.07,
         'stattrak': 0.09 // 9% chance
       },
       'quality': {
