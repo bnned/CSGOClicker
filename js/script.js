@@ -2,12 +2,24 @@
 
 var Game = {
   'variables': {
-    'containerTypes': {[
-      'case',
-      'capsule',
-      'souvenirPackage',
-      'gameDrop'
-    ]},
+    'containerTypes': {
+      'case': {
+        'ST': true,
+        'wears': ['milspec', 'restricted', 'classified', 'covert', 'knife']
+      },
+      'capsule': {
+        'ST': false,
+        'wears': ['normal', 'holo', 'foil']
+      },
+      'souvenirPackage': {
+        'ST': false,
+        'wears': ['consumer', 'industrial', 'milspec', 'restricted', 'classified', 'covert']
+      },
+      'gameDrop': {
+        'ST': false,
+        'wears': ['consumer', 'industrial', 'milspec', 'restricted', 'classified', 'covert']
+      }
+    },
     'caseTypes': {[
       // enter json data from scraper here, key is case name and json obj as data. fix if needed.
     ]},
@@ -20,25 +32,17 @@ var Game = {
         'fn': 0,
         'stattrak': 0.09 // 9% chance
       },
-      'case': {
+      'quality': {
+        'consumer': 0, // base chance
+        'industrial': 0, // base chance
         'milspec': 1, // base chance
+        'normal': 0, // base chance
         'restricted': 0.15, // 15% chance
+        'holo': 0, // base chance
         'classified': 0.05, // 5% chance
+        'foil': 0, // base chance
         'covert': 0.025, // 2.5% chance
         'knife': 0.005 // .5% chance
-      },
-      'capsule': {
-        'milspec': 1, // base chance
-        'restricted': 0.15, // 15% chance
-        'classified': 0.05, // 5% chance
-        'covert': 0.025, // 2.5% chance
-        'knife': 0.005 // .5% chance
-      },
-      'drop': {
-        'milspec': 1, // base chance
-        'restricted': 0.15, // 15% chance
-        'classified': 0.05, // 5% chance
-        'covert': 0.025, // 2.5% chance
       }
     }
   },
