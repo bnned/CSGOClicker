@@ -2,7 +2,15 @@
 
 var Game = {
   'variables': {
-    'currentCase': 1
+    'containerTypes': {[
+      'case',
+      'capsule',
+      'souvenirPackage',
+      'gameDrop'
+    ]},
+    'caseTypes': {[
+      // enter json data from scraper here, key is case name and json obj as data. fix if needed.
+    ]},
     'rarity': {
       'base': {
         'bs': 0,
@@ -10,7 +18,7 @@ var Game = {
         'ft': 0,
         'mw': 0,
         'fn': 0,
-        'stattrak': 0.3 // 30% chance
+        'stattrak': 0.09 // 9% chance
       },
       'case': {
         'milspec': 1, // base chance
@@ -39,7 +47,17 @@ var Game = {
     'itemCounter': 0,
     'maxItems': 50,
     'items': [],
-    'upgrades': []
+    'upgrades': [],
+    'stats': {
+      'moneySpent': 0,
+      'moneyBet': 0,
+      'moneyWon': 0,
+      'caseStats': {
+        'casesOpened': 0,
+        'knivesOpened': 0,
+        'percentStattrak': 0,
+      }
+    }
   },
   'jackpot': {
     'pot': {
@@ -73,3 +91,11 @@ var Game = {
       - souvenir package
       - case skin
       - operation skin
+
+*/
+
+function typeCheck() {
+  if (Game.) {
+
+  }
+}
