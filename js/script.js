@@ -27,7 +27,7 @@ var Game = {
       'base': {
         // based on wear value, look up values later
         /*
-        0.44 – 1.00 - Battle-Scarred does bs really have 60% chance?
+        0.44 – 1.00 - Battle-Scarred does bs really have 60% chance? Fuck it for now it does
         0.37 – 0.44 - Well-Worn
         0.15 – 0.37 - Field Tested
         0.07 – 0.15 - Minimal Wear
