@@ -25,7 +25,7 @@ var Game = {
     ]},
     'rarity': {
       'base': {
-        // based on wear value, look up values later
+        // based on wear value, look up values later, kappa sorry
         /*
         0.44 – 1.00 - Battle-Scarred does bs really have 60% chance? Fuck it for now it does
         0.37 – 0.44 - Well-Worn
