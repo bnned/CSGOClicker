@@ -1365,7 +1365,8 @@ function jackpotStart() {
 
         if (rarity === "knife") {
           //var knifeCase = Object.keys(knives)[Math.floor(Math.random() * Object.keys(knives).length)];
-          var knifeCase = "regular";
+          var enabledKnives = ["regular", "chroma", "falchion"];
+          var knifeCase = enabledKnives[Math.floor(Math.random() * enabledKnives.length)];
 
           skinsArray = Object.keys(knives[knifeCase]);
           randSkin = skinsArray[Math.floor(skinsArray.length * Math.random())];
