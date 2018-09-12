@@ -1,5 +1,6 @@
 // CSGOClicker - Case CSGOClicker
 //money, inventory, jackpot
+(function() {
 var itemCounter = 0;
 var fps = 15;
 
@@ -1708,3 +1709,4 @@ function init() {
   drawStackingUpgrades();
 }
 init();
+})();
